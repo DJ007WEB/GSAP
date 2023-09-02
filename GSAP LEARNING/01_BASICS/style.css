@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+/*    BASIC to AND from   */
+
+/* #page1 {
+    background-color: #214863;
+    height: 100%;
+    width: 100%;
+}
+
+#box {
+    height: 300px;
+    width: 300px;
+    background-color: crimson;
+} */
+
+/*    timline   */
+
+h1 {
+    color: #450267;
+    font-size: 70px;
+}
+h2 {
+    color: #219876;
+    font-size: 60px;
+}
+h3 {
+    color: #821275;
+    font-size: 50px;
+}
+
+
+/*    repeat AND yoyo AND stagger  */
+
+/* h1 {
+    color: yellow;
+    font-size: 60px;
+} */

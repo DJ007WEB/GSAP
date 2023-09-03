@@ -7,4 +7,20 @@
 html, body {
     height: 100%;
     width: 100%;
+    background-color: black;
+}
+
+
+.nav {
+    background-color: black;
+}
+
+.nav-logo {
+    width: 25%;
+    border: 2px solid black;
+}
+
+img[alt = "logo"] {
+    width: 100%;
+    
 }

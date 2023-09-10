@@ -25,18 +25,33 @@ const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  orderDelivery : function ({time, mainIndex, address, starterIndex}) {
-    console.log(`ORDER  RECEIVED! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be deliverd at ${address} at ${time}`);
-}
+  orderDelivery: function ({ time, mainIndex, address, starterIndex }) {
+    console.log(
+      `ORDER  RECEIVED! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be deliverd at ${address} at ${time}`
+    );
+  },
 
+  orderPasta: function(ing1, ing2, ing3) {
+    console.log(`Here is your pasta with ${ing1} , ${ing2} and ${ing3}`);
+  }
 };
 
-const arr = [7,8,9];
+const arr = [7, 8, 9];
 
-const newBadArr = [1 , 2 , arr[0], arr[1], arr[2]];
+const newBadArr = [1, 2, arr[0], arr[1], arr[2]];
 
 console.log(newBadArr);
 
-const newArr = [1,2, ...arr];
+const newArr = [1, 2, ...arr];
 
 console.log(newArr);
+
+const ingredients = [
+  prompt("Let's make pasta! Ingredient 1"),
+  prompt("Ingredents 2"),
+  prompt("Ingredients 3"),
+];
+
+console.log(ingredients);
+
+restaurant.orderPasta(...ingredients);

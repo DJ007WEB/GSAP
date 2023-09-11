@@ -18,6 +18,16 @@ startsWith(); All of these return boolean values.
 includes();
 endsWith();
 
+
+split();
+join();
+
+
+padStart();
+padEnd();
+
+repeat();
+
 */
 
 

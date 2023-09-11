@@ -70,3 +70,31 @@ const book = airIndia.book;
 book.call(kingFisher, 456, 'jYo');
 console.log(kingFisher);
 
+
+const bookKF = book.bind(kingFisher);
+
+bookKF(456,'Sharmila TXC');
+
+
+airIndia.planes = 300;
+
+airIndia.buyPlan = function() {
+    this.planes++;
+
+    console.log(this.planes);
+}
+
+document.querySelector('.buy').addEventListener('click' , airIndia.buyPlan.bind(airIndia))
+
+
+
+const addTax = function(rate) {
+    return function(value) {
+        return value + value * rate;
+    }
+}
+
+const vat2 = addTax(0.25);
+
+console.log(vat2(100));
+

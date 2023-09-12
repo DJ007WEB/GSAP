@@ -89,3 +89,18 @@ const movementsUSD = movements.map((mov) => {
 
 console.log(movements);
 console.log(movementsUSD);
+
+
+// -------------- CREATING USERNAMES
+
+
+const createUserNames = function(acc) {
+
+  acc.forEach((acc) => {
+    acc.username = acc.owner.toLowerCase().split(' ').map((e) => e[0]).join('');
+  })
+}
+
+createUserNames(accounts);
+
+console.log(account1);

@@ -193,6 +193,22 @@ btnTransfer.addEventListener('click' , (e) => {
       }
 })
 
+// ------------------------ IMPLEMENTING LOAN REQUESTING
+
+btnLoan.addEventListener('click' , (e) => {
+
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if(amount > 0 && currAcc.movements.some((e) => e >= amount * 0.1)) {
+    currAcc.movements.push(amount);
+
+    updateUi(currAcc);
+  }
+
+  inputLoanAmount.value = "";
+})
 
 // ---------------------- IMPLEMENTING CLOSING AN ACCOUNT
 

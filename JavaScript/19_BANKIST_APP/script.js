@@ -75,3 +75,17 @@ const displayMovements = function (movements) {
 };
 
 displayMovements(account1.movements);
+
+
+// USING MAP +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurtoUSD = 1.1;
+
+const movementsUSD = movements.map((mov) => {
+    return Math.trunc(mov*eurtoUSD);
+})
+
+console.log(movements);
+console.log(movementsUSD);

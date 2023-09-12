@@ -194,6 +194,32 @@ btnTransfer.addEventListener('click' , (e) => {
 })
 
 
+// ---------------------- IMPLEMENTING CLOSING AN ACCOUNT
+
+btnClose.addEventListener('click' , (e) => {
+    e.preventDefault();
+
+    
+
+    console.log('clicked');
+
+    if(Number(inputClosePin.value) === currAcc.pin && inputCloseUsername.value === currAcc.username) {
+        
+      const index = accounts.findIndex((acc) => acc.username === currAcc.username);
+
+      console.log(index);
+
+      accounts.splice(index , 1);
+
+      console.log(accounts);
+      containerApp.style.opacity = 0;
+
+    }
+
+    inputClosePin.value = inputCloseUsername.value = '';
+})
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////// ------------ ENDING THE APP CODING ----------------//////////////////////////////////////
 

@@ -94,10 +94,10 @@ createUserNames(accounts);
 
 // --------------------- CALCULATING and DISPLAYING BALANCE
 
-const displaybalance = function (movements) {
-  const balance = movements.reduce((acc, e) => acc + e, 0);
+const displaybalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, e) => acc + e, 0);
 
-  labelBalance.textContent = `${balance}€`;
+  labelBalance.textContent = `${acc.balance}€`;
 };
 
 // ------------------------ CALCULATING AND DISPLAYING DEPOSIT AMOUNT
@@ -123,7 +123,23 @@ const calDeposit = function (acc) {
   labelSumInterest.textContent = `${interest}€`;
 };
 
-// calDeposit(account1.movements);
+
+// ---------------------------- UPDATING UI
+
+const updateUi = function(acc) {
+  // displaying movements
+  displayMovements(acc.movements);
+
+  // displaying balance
+
+  displaybalance(acc);
+
+  // displaying summary or deposit in the bottom of the page
+
+  calDeposit(acc);
+}
+
+
 
 // ------------------------ IMPLEMENTING LOG IN FEATURE
 
@@ -150,24 +166,38 @@ btnLogin.addEventListener("click", (e) => {
 
     inputLoginPin.blur();
 
-
-    // displaying movements
-    displayMovements(currAcc.movements);
-
-    // displaying balance
-
-    displaybalance(currAcc.movements);
-
-    // displaying summary or deposit in the bottom of the page
-
-    calDeposit(currAcc);
+      updateUi(currAcc);
+    
   }
 });
 
-// console.log(currAcc);
+
+// ----------------------- IMPLEMENTING MONEY TRANSFER
+
+btnTransfer.addEventListener('click' , (e) => {
+      e.preventDefault();
+
+      const amount =  Number(inputTransferAmount.value);
+
+      const receiAcc = accounts.find((acc) => acc.username === inputTransferTo.value);
+
+      inputTransferAmount.value = inputTransferTo.value = '';
+
+      if(amount > 0 && receiAcc && currAcc.balance > amount && receiAcc?.username !== currAcc.username) {
+        console.log(`transfer done`);
+
+        currAcc.movements.push(-amount);
+        receiAcc.movements.push(amount);
+
+        updateUi(currAcc);
+      }
+})
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////// ------------ ENDING THE APP CODING ----------------//////////////////////////////////////
+
+
 
 // USING MAP +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

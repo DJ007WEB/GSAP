@@ -56,6 +56,11 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////// ------------ STARTING THE APP CODING ----------------//////////////////////////////////////
+
+// ----------------- DISPLAY MOVEMENTS
+
 const displayMovements = function (movements) {
 
   containerMovements.innerHTML = "";
@@ -77,6 +82,36 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 
 
+// -------------- CREATING USERNAMES
+
+
+const createUserNames = function(acc) {
+
+  acc.forEach((acc) => {
+    acc.username = acc.owner.toLowerCase().split(' ').map((e) => e[0]).join('');
+  })
+}
+
+createUserNames(accounts);
+
+
+
+// --------------------- CALCULATING and DISPLAYING BALANCE
+
+const displaybalance = function(movements) {
+    const balance = movements.reduce((acc,e) => acc + e , 0);
+
+    labelBalance.textContent = `${balance}EUR`
+} 
+
+displaybalance(account1.movements)
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////// ------------ ENDING THE APP CODING ----------------//////////////////////////////////////
+
+
 // USING MAP +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
@@ -91,16 +126,20 @@ console.log(movements);
 console.log(movementsUSD);
 
 
-// -------------- CREATING USERNAMES
 
-
-const createUserNames = function(acc) {
-
-  acc.forEach((acc) => {
-    acc.username = acc.owner.toLowerCase().split(' ').map((e) => e[0]).join('');
-  })
-}
-
-createUserNames(accounts);
 
 console.log(account1);
+
+
+/// REDUCE ++++++++++++++++++++++++++++++++++++++
+
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const bal = movements.reduce((acc, cur , i , arr) => {
+      return acc + cur;
+},0);
+
+
+console.log(bal);
+

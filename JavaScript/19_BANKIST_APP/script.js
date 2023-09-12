@@ -62,77 +62,112 @@ const inputClosePin = document.querySelector(".form__input--pin");
 // ----------------- DISPLAY MOVEMENTS
 
 const displayMovements = function (movements) {
-
   containerMovements.innerHTML = "";
 
   movements.forEach((mov, i) => {
-
-    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const type = mov > 0 ? "deposit" : "withdrawal";
 
     const html = `<div class="movements__row">
-      <div class="movements__type movements__type--${type}">${i+1} ${type}</div>
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
       <div class="movements__value">${mov}&euro;</div>
     </div>`;
 
-    containerMovements.insertAdjacentHTML('afterbegin',html)
-
+    containerMovements.insertAdjacentHTML("afterbegin", html);
   });
 };
 
-displayMovements(account1.movements);
-
-
 // -------------- CREATING USERNAMES
 
-
-const createUserNames = function(acc) {
-
+const createUserNames = function (acc) {
   acc.forEach((acc) => {
-    acc.username = acc.owner.toLowerCase().split(' ').map((e) => e[0]).join('');
-  })
-}
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map((e) => e[0])
+      .join("");
+  });
+};
 
 createUserNames(accounts);
 
-
-
 // --------------------- CALCULATING and DISPLAYING BALANCE
 
-const displaybalance = function(movements) {
-    const balance = movements.reduce((acc,e) => acc + e , 0);
+const displaybalance = function (movements) {
+  const balance = movements.reduce((acc, e) => acc + e, 0);
 
-    labelBalance.textContent = `${balance}€`
-} 
-
-displaybalance(account1.movements)
-
-
+  labelBalance.textContent = `${balance}€`;
+};
 
 // ------------------------ CALCULATING AND DISPLAYING DEPOSIT AMOUNT
 
+const calDeposit = function (acc) {
+  const deposit = acc.movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, e) => acc + e, 0);
 
-const calDeposit = function(movements) {
+  labelSumIn.textContent = `${deposit}€`;
 
-  const deposit = movements.filter((mov) => mov > 0).reduce((acc,e) => acc + e , 0);
+  const outcome = acc.movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, e) => acc + e, 0);
 
-  labelSumIn.textContent = `${deposit}€`
+  labelSumOut.textContent = `${Math.abs(outcome)}€`;
 
-  const outcome = movements.filter((mov) => mov < 0).reduce((acc,e) => acc + e , 0);
+  const interest = acc.movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => (deposit * acc.interestRate) / 100)
+    .reduce((acc, i) => acc + i, 0);
 
-  labelSumOut.textContent = `${Math.abs(outcome)}€`
+  labelSumInterest.textContent = `${interest}€`;
+};
 
-  const interest = movements.filter((mov) => mov > 0).map((deposit) => deposit * 1.2/100).reduce((acc,i) => acc + i , 0);
+// calDeposit(account1.movements);
 
-  labelSumInterest.textContent = `${interest}€`
-}
+// ------------------------ IMPLEMENTING LOG IN FEATURE
 
-calDeposit(account1.movements);
+let currAcc;
+
+btnLogin.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  currAcc = accounts.find((acc) => acc.username === inputLoginUsername.value);
+
+  if (currAcc?.pin === Number(inputLoginPin.value)) {
+    // console.log(`LOGIN`);
+
+    // diplsaying message and ui
+    labelWelcome.textContent = `Welcome Back, ${currAcc.owner
+      .split(" ")
+      .at(0)}`;
+
+    containerApp.style.opacity = 100;
+
+    inputLoginUsername.value = "";
+
+    inputLoginPin.value = "";
+
+    inputLoginPin.blur();
 
 
+    // displaying movements
+    displayMovements(currAcc.movements);
+
+    // displaying balance
+
+    displaybalance(currAcc.movements);
+
+    // displaying summary or deposit in the bottom of the page
+
+    calDeposit(currAcc);
+  }
+});
+
+// console.log(currAcc);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////// ------------ ENDING THE APP CODING ----------------//////////////////////////////////////
-
 
 // USING MAP +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -141,27 +176,20 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const eurtoUSD = 1.1;
 
 const movementsUSD = movements.map((mov) => {
-    return Math.trunc(mov*eurtoUSD);
-})
+  return Math.trunc(mov * eurtoUSD);
+});
 
-console.log(movements);
-console.log(movementsUSD);
+// console.log(movements);
+// console.log(movementsUSD);
 
-
-
-
-console.log(account1);
-
+// console.log(account1);
 
 /// REDUCE ++++++++++++++++++++++++++++++++++++++
 
-
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const bal = movements.reduce((acc, cur , i , arr) => {
-      return acc + cur;
-},0);
+const bal = movements.reduce((acc, cur, i, arr) => {
+  return acc + cur;
+}, 0);
 
-
-console.log(bal);
-
+// console.log(bal);

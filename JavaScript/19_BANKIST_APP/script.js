@@ -61,10 +61,12 @@ const inputClosePin = document.querySelector(".form__input--pin");
 
 // ----------------- DISPLAY MOVEMENTS
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort=false) {
   containerMovements.innerHTML = "";
 
-  movements.forEach((mov, i) => {
+  const movs = sort ? movements.slice().sort((a,b) => a - b) : movements;
+
+  movs.forEach((mov, i) => {
     const type = mov > 0 ? "deposit" : "withdrawal";
 
     const html = `<div class="movements__row">
@@ -233,6 +235,20 @@ btnClose.addEventListener('click' , (e) => {
     }
 
     inputClosePin.value = inputCloseUsername.value = '';
+})
+
+
+
+// ------------------------- IMPLEMENTING SORTING FEATURE
+
+let sortedState = false;
+
+btnSort.addEventListener('click' , (e) => {
+    e.preventDefault();
+
+    displayMovements(currAcc.movements, !sortedState);
+
+    sortedState = !sortedState;
 })
 
 

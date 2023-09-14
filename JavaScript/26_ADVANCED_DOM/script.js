@@ -37,7 +37,61 @@ const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
 
-btnScrollTo.addEventListener('click', () => {
+// btnScrollTo.addEventListener('click', () => {
     
-    section1.scrollIntoView({behavior: 'smooth'});
+//     section1.scrollIntoView({behavior: 'smooth'});
+// })
+
+
+// NAVIGATION LINK SCROLLING
+
+document.querySelector('.nav__links').addEventListener('click' , (e) => {
+  e.preventDefault();
+
+  if(e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+
+    console.log(id);
+
+    document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+  }
+})
+
+
+// BUILDING THE TAB COMPONENT
+
+const tabContainer = document.querySelector('.operations__tab-container');
+
+console.log(tabContainer);
+
+const tabBtns = document.querySelectorAll('.operations__tab');
+
+const tabContents = document.querySelectorAll('.operations__content')
+
+tabContainer.addEventListener('click' , (e) => {
+  
+  const clicked = e.target.closest('.operations__tab');
+
+ if(!clicked) return;
+
+ // Removing Active Class from The Buttons
+ tabBtns.forEach((bt) => bt.classList.remove('operations__tab--active'));
+
+ // Removing Active Class from The Container Tabs
+
+ tabContents.forEach((tab) => tab.classList.remove('operations__content--active'));
+
+ // Adding The Active Class to the clicked Button
+ clicked.classList.add('operations__tab--active');
+
+ // Adding The Active Class to the Respective Content Tab
+
+ document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
+
+ console.log(clicked.dataset.tab);
+
+
+
+
+
 })

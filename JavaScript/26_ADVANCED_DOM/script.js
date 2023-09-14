@@ -62,7 +62,7 @@ document.querySelector('.nav__links').addEventListener('click' , (e) => {
 
 const tabContainer = document.querySelector('.operations__tab-container');
 
-console.log(tabContainer);
+// console.log(tabContainer);
 
 const tabBtns = document.querySelectorAll('.operations__tab');
 
@@ -117,3 +117,97 @@ const handleHOver = function(e) {
 nav.addEventListener('mouseover' , handleHOver.bind(0.5));
 
 nav.addEventListener('mouseout' , handleHOver.bind(1));
+
+
+// Making Nav Bar Sticky After Header
+
+const header = document.querySelector('.header');
+
+const navHeight = nav.getBoundingClientRect().height;
+
+// console.log(navHeight);
+
+const stickyNav = function(entries) {
+  const [entry] = entries;
+
+  if(!entry.isIntersecting) {
+    nav.classList.add('sticky');
+  } else {
+    nav.classList.remove('sticky');
+  }
+}
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root : null,
+  threshold : 0,
+  rootMargin : `-${navHeight}px`,
+});
+
+headerObserver.observe(header);
+
+
+// Making Sections Animated 
+
+const sections = document.querySelectorAll('.section');
+
+// console.log(sections);
+
+const animateSec = function(entries,observer) {
+  const [entry] = entries;
+  // console.log(entry);
+
+  if(!entry.isIntersecting) return;
+
+  entry.target.classList.remove('hidden');
+  sectionObserver.unobserve(entry.target);
+}
+
+
+const sectionObserver = new IntersectionObserver(animateSec,{
+  root: null,
+  threshold: 0.15,
+});
+
+sections.forEach((section) => {
+  sectionObserver.observe(section);
+  section.classList.add('hidden');
+})
+
+
+// Lazy Loading 
+
+
+const lazyimg = document.querySelectorAll('.lazy-img');
+
+// console.log(lazyimg);
+
+const lazyImg = function(entries, observer) {
+
+  const [entry] = entries;
+
+  // console.log(observer);
+
+  if(!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load' , () => {
+    entry.target.classList.remove('lazy-img');
+  })
+
+  lazyObserver.unobserve(entry.target);
+
+}
+
+
+const lazyObserver = new IntersectionObserver(lazyImg, {
+    root: null,
+    threshold: 0.15,
+    rootMargin: `-200px`
+});
+
+// console.log(lazyObserver);
+
+lazyimg.forEach((im) => {
+  lazyObserver.observe(im);
+})

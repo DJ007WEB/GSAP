@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* MAKING THE ICON SMALL */
+
+.accordian-icon {
+    width: 24px;
+    height: 24px;
+    stroke: #03071e;
+}
+
+/* DESIGNING THE MAIN ACCORDIAN CONTAINER */
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordian {
+    width: 800px;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px 35px;
+    box-shadow: 0 0 34px rgba(0,0,0,0.7);
+}
+
+/* DESIGNING THE QUESTION CONTAINER WHICH IS THE PARENT OF QUESTIONS AND ANSWERS  */
+
+.question {
+    /* border: 2px solid green; */
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 10px;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    padding: 20px 25px;
+    background-color: #e0e1dd;
+    cursor: pointer;
+}
+
+.ques-num {
+    font-size: 25px;
+    /* display: inline-block; */
+    font-weight: 600;
+    color: #d00000;
+}
+
+.ques-num + h3 {
+    font-size: 35px;
+    color: #6a040f;
+}
+
+.answer {
+    grid-column: 2;
+    /* border: 2px solid salmon; */
+    margin-top: 15px;
+    color: #370617;
+    display: none;
+}
+
+.open {
+    border-top: 4px solid #f48c06;
+}
+
+.open .answer {
+    display: block;
+}
+
+.open .question {
+    border-top: 4px solid #f48c06;
+}
+
+.bullet-points {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+}

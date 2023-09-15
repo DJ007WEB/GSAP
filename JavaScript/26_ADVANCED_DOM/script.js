@@ -155,7 +155,7 @@ const animateSec = function (entries, observer) {
 
   if (!entry.isIntersecting) return;
 
-  entry.target.classList.remove('hidden');
+  // entry.target.classList.remove('hidden');
   sectionObserver.unobserve(entry.target);
 };
 
@@ -166,7 +166,7 @@ const sectionObserver = new IntersectionObserver(animateSec, {
 
 sections.forEach((section) => {
   sectionObserver.observe(section);
-  section.classList.add('hidden');
+  // section.classList.add('hidden');
 });
 
 // Lazy Loading
@@ -203,13 +203,15 @@ lazyimg.forEach((im) => {
   lazyObserver.observe(im);
 });
 
+
+
 // Activating Slides
 
 const slider = document.querySelector(".slider");
 
 const slides = document.querySelectorAll(".slide");
 
-console.log(slider);
+// console.log(slider);
 
 const sliderLeftBtn = document.querySelector(".slider__btn--left");
 const sliderRightBtn = document.querySelector(".slider__btn--right");
@@ -236,6 +238,7 @@ const nextSlide = function () {
   }
 
   slideEngine(slideCount);
+  dotHighlight(slideCount);
 };
 const prevSlide = function () {
   if(slideCount == 0) {
@@ -245,6 +248,7 @@ const prevSlide = function () {
   }
 
   slideEngine(slideCount);
+  dotHighlight(slideCount);
 };
 
 sliderRightBtn.addEventListener("click", nextSlide);
@@ -260,3 +264,39 @@ document.addEventListener('keydown' , (e) => {
     prevSlide();
   }
 })
+
+
+// Activating Dots
+
+const dotContainer = document.querySelector('.dots');
+
+const createDots = function() {
+  slides.forEach((_ , i) => {
+    dotContainer.insertAdjacentHTML('beforeend' , `<button class="dots__dot" data-slide="${i}"></button>`);
+  })
+}
+
+createDots();
+
+
+dotContainer.addEventListener('click' , (e) => {
+  if(e.target.classList.contains('dots__dot')) {
+    // console.log(e.target.dataset);
+    const {slide} = e.target.dataset;
+    slideEngine(slide);
+    dotHighlight(slide);
+  }
+})
+
+
+// Highlight the  Activated Dots 
+
+const dotHighlight = function(slide) {
+  document.querySelectorAll('.dots__dot').forEach((e) => {
+    e.classList.remove('dots__dot--active')
+  })
+
+  document.querySelector(`.dots__dot[data-slide="${slide}"]`).classList.add('dots__dot--active');
+}
+
+dotHighlight(0);

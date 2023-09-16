@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+
+    display: grid;
+    grid-template-columns: 80px 400px 1fr 300px;
+    grid-template-rows: 80px 1fr;
+}
+
+nav {
+    grid-row: 1/-1;
+    background-color: #343A40;
+    text-align: center;
+    padding-top: 20px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+menu {
+    background-color: #7048E8;
+    grid-column: 2/-1;;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+button {
+    border: none;
+    padding: 6px 10px;
+    /* border-radius: 5px; */
+    background-color: #5F3DC4;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+button:last-child {
+    background-color: #D6336C;
+    margin-left: auto;
+}
+
+section {
+    background-color: #E9ECEF;
+    padding: 20px 0;
+    overflow: scroll;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    /* justify-content: center; */
+    align-items: center;
+    
+}
+
+.email {
+    height: 100px;
+    width: 80%;
+    background-color: #ADB5BD;
+    font-size: 25px;
+    font-weight: 600;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+main {
+    background-color: #FFFFFF;
+    text-align: center;
+    padding-top: 20px;
+}
+
+aside {
+    background-color: #E9ECEF;
+    text-align: center;
+    padding-top: 20px;
+}

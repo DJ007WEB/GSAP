@@ -269,21 +269,6 @@
   color: #333;
 }
 
-.card-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
-
-.card-list li {
-  font-size: 2.4rem;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
 
 .card-icon {
   color: #cf711f;
@@ -367,4 +352,63 @@
 
 .gallery img:hover {
   transform: scale(1.2);
+}
+
+
+/*************************************/
+/* PRICING SECTION */
+/* *********************************** */
+
+
+.section-pricing {
+  padding: 9.6rem 0;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: -0.5rem;
+}
+
+
+.price-plan {
+  padding: 0 4.8rem;
+}
+
+.pricing-card {
+  width: 85%;
+  border: 1px solid #b48052;
+  border-radius: 1.3rem;
+  padding: 6rem;
+  box-shadow: 0 3rem 4.8rem rgba(0, 0, 0, 0.06);
+}
+
+.pricing-card:last-child {
+  background-color: #FDF2E9;
+}
+.pricing-name {
+  color: #cf711f;
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-bottom: 2.9rem;
+}
+
+.price {
+  font-size: 5rem;
+  font-weight: 600;
+  color: #313131;
+  margin-bottom: 2.9rem;
+}
+
+.price-text {
+  font-size: 2rem;
+}
+
+.price-btn {
+  display: inline-block;
+  margin-top: 5rem;
+}
+
+.pricing-card span {
+  font-size: 1.8rem;
 }

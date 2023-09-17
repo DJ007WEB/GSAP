@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OMNIFOOD</title>
+    <title>OMNIFOOD DOING NOW</title>
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,6 +11,15 @@
       href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <!-- ION ICONS SCRIPT -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
     <link rel="stylesheet" href="./css/general.css" />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
@@ -75,6 +84,8 @@
       </section>
 
       <!-- SECOND PAGE -->
+
+      <!-- Second Page Featured In  -->
       <section class="section-featured-in">
         <div class="container">
           <h2 class="heading-featured-in">AS FEATURED IN</h2>
@@ -89,11 +100,12 @@
               alt="the-new-york-times"
             />
             <img src="./img/logos/forbes.png" alt="forbes" />
-            <img src="./img/logos/usa-today.png" alt="usa-today">
+            <img src="./img/logos/usa-today.png" alt="usa-today" />
           </div>
         </div>
       </section>
 
+      <!-- Second Page Main Part -->
       <section class="section-how">
         <!-- STARTING OF THE SECOND PAGE -->
         <div class="container">
@@ -162,6 +174,99 @@
       </section>
 
       <!-- THIRD PAGE -->
+
+      <section class="section-meals">
+        <!-- Section Meals Heading Part -->
+        <div class="container text-center">
+          <span class="sub-heading">MEALS</span>
+          <h2 class="heading-secondary">
+            Omnifood AI chooses from 5,000+ recipes
+          </h2>
+        </div>
+        <!-- Section Meal Main Part -->
+        <div class="container grid grid--col-3 margin-bottom-md ">
+          <!-- FIRST CARD -->
+          <div class="meal">
+            <img
+              src="./img/meals/meal-1.jpg"
+              alt="Japanese Gyozas"
+              class="meal-img"
+            />
+            <!-- MEAL CARD LOWER PART -->
+            <div class="meal-card-lower">
+              <span class="meal-tag">Vegetarian</span>
+              <p class="meal-name">Japanese Gyozas</p>
+              <ul class="meal-attributes">
+                <li>
+                  <ion-icon name="flame-outline" class="meal-icon"></ion-icon
+                  ><span><strong>650 </strong>calories</span>
+                </li>
+                <li>
+                  <ion-icon
+                    name="restaurant-outline"
+                    class="meal-icon"
+                  ></ion-icon
+                  ><span>NutriScore &reg; 74</span>
+                </li>
+                <li>
+                  <ion-icon name="star-outline" class="meal-icon"></ion-icon
+                  ><span><strong>4.9</strong> rating (537)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- SECOND CARD -->
+          <div class="meal">
+            <img
+              src="./img/meals/meal-2.jpg"
+              alt="Avocado Salad"
+              class="meal-img"
+            />
+            <!-- MEAL CARD LOWER PART -->
+            <div class="meal-card-lower">
+              <div class="meal-tags">
+                <span class="meal-tag">Vegan</span>
+                <span class="meal-tag">Paleo</span>
+              </div>
+              <p class="meal-name">Avocado Salad</p>
+              <ul class="meal-attributes">
+                <li>
+                  <ion-icon name="flame-outline" class="meal-icon"></ion-icon
+                  ><span><strong>400 </strong>calories</span>
+                </li>
+                <li>
+                  <ion-icon
+                    name="restaurant-outline"
+                    class="meal-icon"
+                  ></ion-icon
+                  ><span>NutriScore &reg; 92</span>
+                </li>
+                <li>
+                  <ion-icon name="star-outline" class="meal-icon"></ion-icon
+                  ><span><strong>4.8</strong> rating (441)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- THIRD CARD -->
+          <div class="list">
+            <p class="list-heading">Works with any diet:</p>
+            <ul class="card-list">
+              <li><ion-icon name="checkmark-outline" class="card-icon"></ion-icon><span>Vegetarian</span></li>
+              <li><ion-icon name="checkmark-outline" class="card-icon"></ion-icon><span>Vegan</span></li>
+              <li><ion-icon name="checkmark-outline" class="card-icon"></ion-icon><span>Pescatarian</span></li>
+              <li><ion-icon name="checkmark-outline" class="card-icon"></ion-icon><span>Gluten-free</span></li>
+              <li><ion-icon name="checkmark-outline" class="card-icon"></ion-icon><span>Lactose-free</span></li>
+              <li><ion-icon name="checkmark-outline" class="card-icon"></ion-icon><span>Keto</span></li>
+              <li><ion-icon name="checkmark-outline" class="card-icon"></ion-icon><span>Paleo</span></li>
+              <li><ion-icon name="checkmark-outline" class="card-icon"></ion-icon><span>Low FODMAP</span></li>
+              <li><ion-icon name="checkmark-outline" class="card-icon"></ion-icon><span>Kid-friendly</span></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Section Meal Last Part -->
+        <div class="meals-link container"><a href="#" class="link">See all recipes &rarr;</a></div>
+      </section>
     </main>
   </body>
 </html>

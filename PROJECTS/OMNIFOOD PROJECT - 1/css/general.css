@@ -21,6 +21,10 @@
   max-width: 120rem;
   margin: 0 auto;
   }
+
+  strong {
+    font-weight: 500;
+  }
   
   .grid {
     display: grid;
@@ -43,6 +47,14 @@
   
   .margin-right-sm {
     margin-right: 2rem !important;
+  }
+
+  .margin-bottom-md {
+    margin-bottom: 4rem !important;
+  }
+
+  .text-center {
+    text-align: center !important;
   }
   
   .heading-primary,

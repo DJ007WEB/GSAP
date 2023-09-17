@@ -116,6 +116,29 @@
   color: #e67e22;
 }
 
+/*************************************/
+/* FEATURED IN SECTION */
+/* *********************************** */
+.section-featured-in {
+  padding: 4.8rem 0 3.2rem 0;
+}
+.heading-featured-in {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 2.4rem;
+  color: #999;
+}
+
+.logos {
+  display: flex;
+  justify-content: space-around;
+}
+.logos img {
+  height: 3.5rem;
+  filter: brightness(0);
+  opacity: 0.4;
+}
+
 
 
 /*************************************/

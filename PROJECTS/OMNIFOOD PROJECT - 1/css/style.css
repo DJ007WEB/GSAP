@@ -3,16 +3,16 @@
 /* *********************************** */
 
 .header {
-    background-color: #fdf2e9;
-    height: 9.6rem;
-    padding: 4rem;
+  background-color: #fdf2e9;
+  height: 9.6rem;
+  padding: 4rem;
 
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo {
-    height: 2.5rem;
+  height: 2.5rem;
 }
 
 /* *********************************** */
@@ -20,37 +20,37 @@
 /* *********************************** */
 
 .main-nav-list {
-    display: flex;
-    gap: 3.2rem;
-    list-style: none;
+  display: flex;
+  gap: 3.2rem;
+  list-style: none;
 }
 
 .main-nav-link:link,
 .main-nav-link:visited {
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.8rem;
-    color: #333;
-    transition: all 0.3s;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: #333;
+  transition: all 0.3s;
 }
 
 .main-nav-link:hover,
 .main-nav-link:active {
-    color: #cf711f;
-} 
+  color: #cf711f;
+}
 
 .main-nav-link.main-nav-btn:link,
 .main-nav-link.main-nav-btn:visited {
-    background-color: #e67e22;
-    color: #fff;
-    padding: 1.1rem 2.4rem;
-    border-radius: 1.2rem;
+  background-color: #e67e22;
+  color: #fff;
+  padding: 1.1rem 2.4rem;
+  border-radius: 1.2rem;
 }
 
 .main-nav-link.main-nav-btn:hover,
 .main-nav-link.main-nav-btn:active {
-    background-color: #cf711f;
-} 
+  background-color: #cf711f;
+}
 
 /*************************************/
 /* HERO SECTION */
@@ -139,8 +139,6 @@
   opacity: 0.4;
 }
 
-
-
 /*************************************/
 /* HOW SECTION */
 /* *********************************** */
@@ -180,7 +178,6 @@
   transform: translate(-50%, -50%);
 }
 
-
 .step-img-box::before {
   width: 60%;
   padding-bottom: 60%;
@@ -198,18 +195,16 @@
   width: 40%;
 }
 
-
 /*************************************/
 /* MEALS SECTION */
 /* *********************************** */
-
 
 .section-meals {
   padding: 9.6rem 0;
 }
 
 .meal {
-  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0,0.075);
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
   border-radius: 1.1rem;
   overflow: hidden;
   transition: all 0.5s;
@@ -229,7 +224,7 @@
   text-transform: uppercase;
   font-size: 1.3rem;
   padding: 0.4rem 0.8rem;
-  background-color: #51CF66;
+  background-color: #51cf66;
   color: #333333;
   border-radius: 1rem;
   font-weight: 500;
@@ -237,7 +232,7 @@
 }
 
 .meal-tag:last-child {
-  background-color: #FFD43B;
+  background-color: #ffd43b;
 }
 
 .meal-name {
@@ -267,8 +262,6 @@
 .meal-icon {
   color: #cf711f;
 }
-
-
 
 .list-heading {
   font-size: 3.5rem;
@@ -312,7 +305,66 @@
 
 .link:hover,
 .link:active {
+  border-bottom: 1px solid transparent;
+}
 
-border-bottom: 1px solid transparent;
 
+/*************************************/
+/* TESTIMONIAL SECTION */
+/* *********************************** */
+
+
+.section-testimonial {
+  background-color: #FDF2E9;
+
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  align-items: center;
+}
+
+.testimonial-container {
+  padding: 9.6rem;
+}
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.testimonial-img {
+  width: 6rem;
+  border-radius: 50%;
+  margin-bottom: 1.2rem;
+}
+
+.testimonial-text {
+  font-size: 1.8rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.testimonial-name {
+  font-size: 1.6rem;
+}
+
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.gallery img {
+  width: 100%;
+  transition: all 0.5s;
+  
+}
+
+.gallery figure {
+  overflow: hidden;
+}
+
+.gallery img:hover {
+  transform: scale(1.2);
 }

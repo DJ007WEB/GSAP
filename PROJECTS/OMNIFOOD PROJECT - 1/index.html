@@ -413,14 +413,18 @@
           </h2>
         </div>
         <!-- Section Pricing Card -->
-        <div class="container card-container price-plan">
+        <div class="container grid grid--col-2">
           <!-- FIRST CARD -->
-          <div class="pricing-card text-center">
-            <p class="pricing-name">STARTER</p>
-            <p class="price">&dollar; 399</p>
-            <p class="price-text">
-              per month. That's just &dollar; 13 per meal!
-            </p>
+          <div class="pricing-card">
+            <!-- CARD HEADING -->
+            <header class="pricing-header">
+              <p class="pricing-name">STARTER</p>
+              <p class="price"><span>$</span> 399</p>
+              <p class="price-text">
+                per month. That's just &dollar; 13 per meal!
+              </p>
+            </header>
+            <!-- BENEFITS -->
             <ul class="list">
               <li class="list-item">
                 <ion-icon name="checkmark-outline" class="card-icon"></ion-icon
@@ -439,24 +443,30 @@
                 ><span></span>
               </li>
             </ul>
-            <a href="#" class="btn btn__full price-btn"
-              >Start Eating Well</a>
+            <!-- BUTTON -->
+            <div class="pricing-card-btn">
+              <a href="#" class="btn btn__full price-btn">Start Eating Well</a>
+            </div>
           </div>
           <!-- SECOND CARD -->
-          <div class="pricing-card text-center">
-            <p class="pricing-name">COMPLETE</p>
-            <p class="price">&dollar; 649</p>
-            <p class="price-text">
-              per month. That's just &dollar; 11 per meal!
-            </p>
+          <div class="pricing-card">
+            <!-- CARD HEADING -->
+            <header class="pricing-header">
+              <p class="pricing-name">COMPLETE</p>
+              <p class="price"><span>$</span> 649</p>
+              <p class="price-text">
+                per month. That's just &dollar; 11 per meal!
+              </p>
+            </header>
+            <!-- BENEFITS -->
             <ul class="list">
               <li class="list-item">
                 <ion-icon name="checkmark-outline" class="card-icon"></ion-icon
-                ><span>2 meals per day</span>
+                ><span><strong>2 meals</strong> per day</span>
               </li>
               <li class="list-item">
                 <ion-icon name="checkmark-outline" class="card-icon"></ion-icon
-                ><span>Order 24/7</span>
+                ><span>Order <strong>24/7</strong></span>
               </li>
               <li class="list-item">
                 <ion-icon name="checkmark-outline" class="card-icon"></ion-icon
@@ -467,8 +477,56 @@
                 ><span>Get access to latest recipes</span>
               </li>
             </ul>
-            <a href="#" class="btn btn__full price-btn"
-              >Start Eating Well</a>
+            <!-- BUTTON -->
+            <div class="pricing-card-btn">
+              <a href="#" class="btn btn__full price-btn">Start Eating Well</a>
+            </div>
+          </div>
+        </div>
+        <!-- Section Features Heading -->
+        <div class="container features-heading">
+          <p>
+            Prices include all applicable taxes. You can cancel at any time.
+            Both plans include the following:
+          </p>
+        </div>
+        <!-- Section Features -->
+        <div class="container grid grid--col-4 features">
+          <!-- ITEM 1 -->
+          <div class="feature-items">
+            <ion-icon name="infinite-outline" class="feature-icon"></ion-icon>
+            <p class="feature-item-head">Never cook again!</p>
+            <p class="feature-item-des">
+              Our subscriptions cover 365 days per year, even including major
+              holidays.
+            </p>
+          </div>
+          <!-- ITEM 2 -->
+          <div class="feature-items">
+            <ion-icon name="nutrition-outline" class="feature-icon"></ion-icon>
+            <p class="feature-item-head">Local and organic</p>
+            <p class="feature-item-des">
+              Our cooks only use local, fresh, and organic products to prepare
+              your meals.
+            </p>
+          </div>
+          <!-- ITEM 3 -->
+          <div class="feature-items">
+            <ion-icon name="leaf-outline" class="feature-icon"></ion-icon>
+            <p class="feature-item-head">Never cook again!</p>
+            <p class="feature-item-des">
+              Our subscriptions cover 365 days per year, even including major
+              holidays.
+            </p>
+          </div>
+          <!-- ITEM 4 -->
+          <div class="feature-items">
+            <ion-icon name="pause-outline" class="feature-icon"></ion-icon>
+            <p class="feature-item-head">Never cook again!</p>
+            <p class="feature-item-des">
+              Our subscriptions cover 365 days per year, even including major
+              holidays.
+            </p>
           </div>
         </div>
       </section>

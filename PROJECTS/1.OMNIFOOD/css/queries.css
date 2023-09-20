@@ -1,0 +1,55 @@
+/*
+
+FONT SIZE(px) ==> 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 48 / 60 / 72 / 96 / 128 /
+Line Height(px)=> 16 / 20 / 24 / 28 / 28 / 32 / 36 / 40 / 1 / 1  / 1  /  1 /   1 /
+
+
+PADDING (px) MARGIN AND SPACING ==> 1 / 2 TO 20 (gap 2) / 24 TO 48 (gap 4) / 56 / 64 / 80 / 96 / 112 / 128 / 144 / 160 / 176 / 192 / 208 /     224 / 240 / 256 / 288 / 320 / 384
+
+
+WIDTH (px) ==> xs - 320 , sm - 384 , md - 448 , lg - 512 , xl - 576 , 2xl - 672 , 3xl - 768 , 4xl - 896 , 5xl - 1024 , 6xl - 1152 , 7xl - 1280 . 
+
+*/
+
+/******************************************/
+/* FOR 1536PX (In This case conatiner size should be 1400px) and FOR 2xl SCREEN
+/******************************************/
+
+/* @media (max-width:96em) {
+
+} */
+
+/******************************************/
+/* FOR 1280PX (This will be the conatiner size for this media) and FOR xl SCREEN
+/******************************************/
+
+@media (max-width: 80em) {
+  /* html {
+    font-size: 56.25%;
+  } */
+
+  /* .container {
+    max-width: 115rem;
+  } */
+}
+
+/******************************************/
+/* FOR 1024PX (This will be the conatiner size for this media) and FOR lg SCREEN
+/******************************************/
+
+@media (max-width: 64em) {
+}
+
+/******************************************/
+/* FOR 768PX (This will be the conatiner size for this media) and FOR md SCREEN
+/******************************************/
+
+@media (max-width: 48em) {
+}
+
+/******************************************/
+/* FOR 640PX (This will be the conatiner size for this media) and FOR sm SCREEN
+/******************************************/
+
+@media (max-width: 40em) {
+}

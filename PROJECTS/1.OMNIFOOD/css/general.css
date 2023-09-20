@@ -1,0 +1,149 @@
+/*
+
+FONT SIZE(px) ==> 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 48 / 60 / 72 / 96 / 128 /
+Line Height(px)=> 16 / 20 / 24 / 28 / 28 / 32 / 36 / 40 / 1 / 1  / 1  /  1 /   1 /
+
+
+PADDING (px) MARGIN AND SPACING ==> 1 / 2 TO 20 (gap 2) / 24 TO 48 (gap 4) / 56 / 64 / 80 / 96 / 112 / 128 / 144 / 160 / 176 / 192 / 208 /     224 / 240 / 256 / 288 / 320 / 384
+
+*/
+
+/* ********************************** */
+/* GENERAL CSS  */
+/* ********************************** */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus {
+    box-shadow: 0 0 0 0.8rem rgba(230, 125, 34, 0.5);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 135rem;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  border: 2px solid red;
+}
+
+a {
+  text-decoration: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+/* ********************************** */
+/* ********************************** */
+/* ********************************** */
+/* UTILITY  */
+/* ********************************** */
+/* ********************************** */
+/* ********************************** */
+
+/* NAVIGATION BUTTON */
+.nav-btn:link,
+.nav-btn:visited {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: #cf711f;
+  border-radius: 1rem;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+/* NORMAL BUTTON */
+.btn:link,
+.btn:visited {
+  display: inline-block;
+  padding: 1.6rem 3.2rem;
+  font-size: 1.9rem;
+  font-weight: 600;
+  background-color: #cf711f;
+  border-radius: 1rem;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.btn:hover,
+.btn:active,
+.nav-btn:hover,
+.nav-btn:active {
+  background-color: #a65a19;
+}
+
+/* ********************************** */
+/* GRID */
+/* ********************************** */
+
+.grid {
+  display: grid;
+  gap: 9.6rem;
+}
+
+.grid-col-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-col-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+/* ********************************** */
+/* HEADINGS */
+/* ********************************** */
+
+.primary-heading {
+  font-size: 5rem;
+  line-height: 1;
+  letter-spacing: 0.9;
+}
+
+.second-heading {
+  font-size: 4rem;
+  color: #333;
+}
+
+.tertiary-heading {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 3.5rem;
+}
+
+.subheading {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #CF7134;
+    margin-bottom: 2rem;
+}
+
+/* ********************************** */
+/* MARGIN */
+/* ********************************** */
+
+.mr-sm {
+  margin-right: 1.3rem;
+}
+
+.mb-md {
+    margin-bottom: 3.5rem;
+}
+.mb-lg {
+    margin-bottom: 8rem;
+}

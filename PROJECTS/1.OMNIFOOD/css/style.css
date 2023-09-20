@@ -178,3 +178,108 @@ PADDING (px) MARGIN AND SPACING ==> 1 / 2 TO 20 (gap 2) / 24 TO 48 (gap 4) / 56 
     width: 40%;
     align-self: center;
 }
+
+
+
+/* ********************************** */
+/* MEALS SECTION */
+/* ********************************** */
+
+.meals-sec {
+    padding: 9.6rem 0;
+}
+
+.meals-header {
+    margin-bottom: 5rem;
+}
+
+.card {
+    padding-bottom: 2rem;
+    box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-2%);
+}
+
+.card-text-box {
+    padding: 2rem 4rem;
+}
+
+.meal-type {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    background-color: #51CF66;
+    font-size: 1.2rem;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 1rem;
+    margin: 2rem 0 1rem 0;
+}
+
+.meal-type-paleo {
+    margin-left: 1rem;
+    background-color: #FFD43B;
+}
+
+.card-list li {
+    font-size: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.card-list li:not(last-child) {
+    margin-bottom: 2rem;
+}
+
+.card-img-box img {
+    width: 100%;
+    /* border-radius: 1rem; */
+}
+
+.list-card .tertiary-heading {
+    font-size: 3.4rem;
+}
+
+.list-card-list {
+    margin-top: 4rem;
+    font-size: 2.3rem;
+}
+
+.list-card-list li:not(last-child) {
+    margin-bottom: 2rem;
+}
+
+.list-card-list li {
+    display: flex;
+    gap: 1rem;
+}
+
+
+.meals-sec ion-icon {
+    color: #cf711f;
+}
+
+
+.meals-footer {
+    margin-top: 5rem;
+    font-size: 2rem;
+}
+
+.meals-footer a:link,
+.meals-footer a:visited {
+    display: inline-block;
+    color: #cf711f;
+    border-bottom: 2px solid #cf711f;
+    transition: all 0.3s;
+}
+
+.meals-footer a:hover,
+.meals-footer a:active {
+    border-bottom: 2px solid transparent;
+}

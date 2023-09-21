@@ -357,16 +357,19 @@
             <p>per month. That's just $11 per meal!</p>
             <ul class="pricing-card-list">
               <li>
-                <ion-icon name="checkmark-outline"></ion-icon><strong>2 meals</strong> per day
+                <ion-icon name="checkmark-outline"></ion-icon
+                ><strong>2 meals</strong> per day
               </li>
               <li>
-                <ion-icon name="checkmark-outline"></ion-icon>Order <strong>24/7</strong>
+                <ion-icon name="checkmark-outline"></ion-icon>Order
+                <strong>24/7</strong>
               </li>
               <li>
                 <ion-icon name="checkmark-outline"></ion-icon>Delivery is free
               </li>
               <li>
-                <ion-icon name="close-outline"></ion-icon>Get access to latest recipes
+                <ion-icon name="close-outline"></ion-icon>Get access to latest
+                recipes
               </li>
             </ul>
             <!-- BUTTON -->
@@ -377,16 +380,107 @@
         </div>
         <!-- FOOTER -->
         <footer class="container text-center">
-          <p>Prices include all applicable taxes. You can cancel at any time. Both plans include the following:</p>
+          <p>
+            Prices include all applicable taxes. You can cancel at any time.
+            Both plans include the following:
+          </p>
         </footer>
       </section>
 
       <!-- PRICING-FEATURE SECTION -->
       <section class="price-feature-sec">
-        <div class="container">
-          <div class="price-feature-1">
-            
+        <div class="container grid grid-col-4">
+          <!-- CARD 01 -->
+          <div class="price-feature-card">
+            <ul>
+              <li><ion-icon name="infinite-outline"></ion-icon></li>
+              <li class="price-feature-card-subheading">Never cook again!</li>
+              <li class="price-feature-card-text">
+                Our subscriptions cover 365 days per year, even including major
+                holidays.
+              </li>
+            </ul>
           </div>
+          <!-- CARD 02 -->
+          <div class="price-feature-card">
+            <ul>
+              <li><ion-icon name="nutrition-outline"></ion-icon></li>
+              <li class="price-feature-card-subheading">Local and organic</li>
+              <li class="price-feature-card-text">
+                Our cooks only use local, fresh, and organic products to prepare
+                your meals.
+              </li>
+            </ul>
+          </div>
+          <!-- CARD 03 -->
+          <div class="price-feature-card">
+            <ul>
+              <li><ion-icon name="leaf-outline"></ion-icon></li>
+              <li class="price-feature-card-subheading">No waste</li>
+              <li class="price-feature-card-text">
+                All our partners only use reusable containers to package all
+                your meals.
+              </li>
+            </ul>
+          </div>
+          <!-- CARD 04 -->
+          <div class="price-feature-card">
+            <ul>
+              <li><ion-icon name="pause-outline"></ion-icon></li>
+              <li class="price-feature-card-subheading">Pause anytime</li>
+              <li class="price-feature-card-text">
+                Going on vacation? Just pause your subscription, and we refund
+                unused days.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- FORM SECTION WHICH IS ALSO CALLED AS CALL TO ACTION (CTA) -->
+      <section class="form-sec">
+        <div class="container">
+          <div class="form-text-box">
+            <!-- HEADER PART -->
+            <header>
+              <h2 class="form-heading">Get your first meal for free!</h2>
+              <p class="form-text">
+                Healthy, tasty and hassle-free meals are waiting for you. Start
+                eating well today. You can cancel or pause anytime. And the
+                first meal is on us!
+              </p>
+            </header>
+            <!-- FORM PART -->
+            <form action="#" class="form">
+              <!-- NAME -->
+              <div>
+                <label for="name">Full Name</label>
+              <input type="text" id="name" required>
+              </div>
+              <!-- EMAIL -->
+              <div>
+                <label for="email">Email Address</label>
+              <input type="email" id="email" required>
+              </div>
+              <!-- SELECT -->
+              <div>
+                <label for="select">Where did you here about us?</label>
+                <select id="select" required>
+                  <option value="">Please choose one option</option>
+                  <option value="Friends and family">Friends and family</option>
+                  <option value="Youtube">Youtube video</option>
+                  <option value="Podcast">Podcast</option>
+                  <option value="Ad">Facebook Ad</option>
+                  <option value="others">Others</option>
+                </select>
+              </div>
+              <!-- BUTTON -->
+              <div class="form-btn">
+                <a href="#">Sign up now</a>
+              </div>
+            </form>
+          </div>
+          <div class="form-img-box"></div>
         </div>
       </section>
     </main>

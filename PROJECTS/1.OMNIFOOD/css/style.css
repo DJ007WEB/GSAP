@@ -501,68 +501,155 @@ PADDING (px) MARGIN AND SPACING ==> 1 / 2 TO 20 (gap 2) / 24 TO 48 (gap 4) / 56 
 .form-text {
   font-size: 2rem;
   margin-bottom: 4rem;
+  line-height: 1.7;
 }
 
 .form {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    column-gap: 1.5rem;
-    row-gap: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 2.4rem;
 }
 
-.form > div {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    /* border: 2px solid red; */
+.form div label {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #45260a;
+  margin-bottom: 1.3rem;
 }
 
-.form label {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #45260A;
+.form input,
+.form select {
+  padding: 1.7rem;
+  border-radius: 1rem;
+  border: none;
+  width: 100%;
+  font-family: inherit;
+  color: #333;
+  font-size: 2rem;
 }
 
-.form input , .form select {
-    padding: 1.7rem;
-    border-radius: 1rem;
-    border: none;
+.form input::placeholder {
+  font-size: 1.7rem;
+  font-weight: 600;
+  font-family: inherit;
 }
 
 .form option {
-    font-size: 1.9rem;
+  font-size: 1.9rem;
 }
 
 .form-btn {
-    align-self:center;
+  align-self: center;
 }
 
-.form-btn > a:link,
-.form-btn > a:visited {
-    display: inline-block;
-    padding: 1rem 3.2rem;
-    background-color: #45260A;
-    font-size: 2.5rem;
-    color: #fff;
-    font-weight: 700;
-    transform: translateY(35%);
-    border-radius: 1rem;
-    text-align: center;
-    transition: all 0.3s;
+.form-btn  {
+  display: block;
+  padding: 1rem 3.2rem;
+  background-color: #45260a;
+  font-size: 2.5rem;
+  color: #fff;
+  font-weight: 700;
+  /* transform: translateY(35%); */
+  border-radius: 1rem;
+  text-align: center;
+  transition: all 0.3s;
+  align-self: self-end;
 }
 
-.form-btn > a:hover,
-.form-btn > a:active {
-    background-color: #fff;
-    color: #333;
+.form-btn:hover {
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
 }
-
 
 .form-img-box {
-  background-image: linear-gradient(to right bottom, rgba(235, 151, 78, 0.35),rgba(230, 125, 34, 0.35)),
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(235, 151, 78, 0.35),
+      rgba(230, 125, 34, 0.35)
+    ),
     url(../img/eating.jpg);
   background-size: cover;
   background-position: center;
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
+}
+
+
+
+/* ********************************** */
+/* FOOTER SECTION */
+/* ********************************** */
+
+.footer-sec {
+  padding: 9.6rem 0;
+  color: #717171;
+}
+
+.footer-sec > .container {
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+}
+
+
+.footer-img-box > a > img {
+  width: 100%;
+}
+
+.social-icon-container {
+  margin-top: 2.5rem;
+  font-size: 3rem;
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 6rem;
+}
+
+
+.social-icon-container + p {
+  font-size: 1.4rem;
+  line-height: 1.7;
+}
+
+.footer-heading {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #717171;
+}
+
+.footer-address {
+  justify-self: center;
+}
+
+.contact {
+  font-style: normal;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+
+
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.contact > p:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact > p:last-child > a {
+  color: #717171;
+}
+
+/* .footer-nav-link {
+  justify-self: center;
+} */
+
+.footer-heading + ul {
+  font-size: 1.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
 }

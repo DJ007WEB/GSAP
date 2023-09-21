@@ -455,12 +455,22 @@
               <!-- NAME -->
               <div>
                 <label for="name">Full Name</label>
-              <input type="text" id="name" required>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  placeholder="John Smith"
+                />
               </div>
               <!-- EMAIL -->
               <div>
                 <label for="email">Email Address</label>
-              <input type="email" id="email" required>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  placeholder="demo@example.com"
+                />
               </div>
               <!-- SELECT -->
               <div>
@@ -475,15 +485,70 @@
                 </select>
               </div>
               <!-- BUTTON -->
-              <div class="form-btn">
-                <a href="#">Sign up now</a>
-              </div>
+              <button class="form-btn">Sign up now</button>
             </form>
           </div>
           <div class="form-img-box"></div>
         </div>
       </section>
     </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer-sec">
+      <div class="container grid grid-col-5">
+        <!-- IMAGE COLUMN -->
+        <div class="footer-img-box">
+          <a href="#"
+            ><img src="./img/omnifood-logo.png" alt="omnifood-logo"
+          /></a>
+          <div class="social-icon-container">
+            <ion-icon name="logo-instagram"></ion-icon>
+            <ion-icon name="logo-facebook"></ion-icon>
+            <ion-icon name="logo-twitter"></ion-icon>
+          </div>
+          <p>Copyright © 2023 by Omnifood, Inc. All rights reserved.</p>
+        </div>
+        <!-- ADDRESS COLUMN -->
+        <div class="footer-address">
+          <p class="footer-heading">Contact Us</p>
+          <address class="contact">
+            <p>623 Harrison St., 2nd Floor, San Francisco, CA 94107</p>
+            <p>
+              <a href="tel:415-201-6370">415-201-6370</a>
+              <a href="mailto:hello@omnifood.com">hello@omnifood.com</a>
+            </p>
+          </address>
+        </div>
+        <!-- NAV LINKS COLUMN -->
+        <div class="footer-nav-link">
+          <p class="footer-heading">Account</p>
+          <ul>
+            <li>Create Account</li>
+            <li>Sign in</li>
+            <li>iOS app</li>
+            <li>Android app</li>
+          </ul>
+        </div>
+        <div class="footer-nav-link">
+          <p class="footer-heading">Company</p>
+          <ul>
+            <li>About Omnifood</li>
+            <li>For Business</li>
+            <li>Cooking partners</li>
+            <li>Careers</li>
+          </ul>
+        </div>
+        <div class="footer-nav-link">
+          <p class="footer-heading">Resources</p>
+          <ul>
+            <li>Recipe directory</li>
+            <li>Help center</li>
+            <li>Privacy & terms</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 
     <!-- ION ICONS -->
     <script

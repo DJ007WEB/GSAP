@@ -283,3 +283,184 @@ PADDING (px) MARGIN AND SPACING ==> 1 / 2 TO 20 (gap 2) / 24 TO 48 (gap 4) / 56 
 .meals-footer a:active {
     border-bottom: 2px solid transparent;
 }
+
+
+/* ********************************** */
+/* TESTIMONIAL SECTION */
+/* ********************************** */
+
+
+
+.testimonial-sec{
+    background-color: #FDF2E9;
+    padding: 4rem 0;
+
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    gap: 3rem;
+}
+
+.testimonial-text-box {
+    padding: 6rem;
+}
+
+.testimonial-card-container {
+    margin-top: 8rem;
+
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 7rem;
+}
+
+.testimonial-cards img {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+}
+
+
+.testimonials {
+    margin-top: 2rem;
+    font-size: 2rem;
+    color: #616161;
+    line-height: 1.7;
+}
+
+.testimonial-author {
+    font-size: 2rem;
+    margin-top: 2rem;
+    color: #616161;
+}
+
+.testimonial-gallery {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1.7rem;
+    padding: 2rem;
+    
+}
+
+.testimonial-gallery figure {
+    overflow: hidden;
+}
+
+.testimonial-gallery img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s;
+}
+
+
+.testimonial-gallery img:hover {
+    transform: scale(1.2);
+}
+
+
+/* ********************************** */
+/* PRICING SECTION */
+/* ********************************** */
+
+.pricing-sec {
+    padding: 9.6rem 0;
+}
+
+.pricing-sec > div:nth-child(2) {
+    margin-top: 8rem;
+    gap: 0rem;
+}
+
+.pricing-card {
+    background-color: #FDF2E9;
+    justify-self: center;
+    width: 70%;
+    padding: 4rem;
+    border-radius: 1rem;
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+.pricing-card .subheading {
+    display: block;
+    text-align: center;
+}
+
+
+.price {
+    font-size: 6rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.price span {
+    font-size: 3rem;
+    margin-right: 1rem;
+    font-weight: 500;
+}
+
+.price + p {
+    font-size: 2rem;
+    color: #8b8787;
+    text-align: center;
+}
+
+.pricing-card-list {
+    margin-top: 4rem;
+    color: #8b8787;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-left: 3rem;
+    
+}
+
+.pricing-card-list > li {
+    font-size: 2.2rem;
+
+    display: flex;
+    gap: 1rem;
+}
+
+.pricing-sec ion-icon {
+    color: #cf711f;
+}
+
+.pricing-card-btn {
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.starter-card {
+    justify-self: end;
+    background-color: #fff;
+    border: 2px solid #FDF2E9;
+}
+
+
+.complete-card::after {
+    content: "Best value";
+    text-transform: uppercase;
+    background-color: #FFD43B;
+    padding: 0.8rem 7rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    z-index: 100;
+
+    position: absolute;
+    top: 4rem;
+    right: -5rem;
+
+    transform: rotate(45deg);
+}
+
+
+.pricing-sec > footer {
+    margin-top: 5rem;
+    font-size: 1.7rem;
+    color: #8b8787;
+}

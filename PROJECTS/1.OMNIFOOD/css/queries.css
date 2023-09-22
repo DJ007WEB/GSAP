@@ -37,22 +37,307 @@ WIDTH (px) ==> xs - 320 , sm - 384 , md - 448 , lg - 512 , xl - 576 , 2xl - 672 
 /* FOR 1024PX (This will be the conatiner size for this media) and FOR lg SCREEN
 /******************************************/
 
-@media (max-width: 64em) {
-  /* html {
-    font-size: 50%;
-  } */
+@media (max-width: 66em) {
+  html {
+    font-size: 43.75%;
+  }
 }
 
 /******************************************/
-/* FOR 768PX (This will be the conatiner size for this media) and FOR md SCREEN
+/* FOR 840PX (This will be the conatiner size for this media) and FOR md SCREEN
 /******************************************/
 
-@media (max-width: 48em) {
+@media (max-width: 52.5em) {
+  /* ********************************** */
+  /* HEADER */
+  /* ********************************** */
+
+  .header {
+    position: relative;
+  }
+
+  .header-nav-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+    width: 100%;
+    background-color: #fffefd;
+
+    font-size: 3rem;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.5s;
+    transform: translateX(100%);
+
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+
+  .mobile-nav-icons[name="menu-outline"] {
+    display: block;
+  }
+
+  .nav-open .header-nav-list {
+    transform: translateX(0%);
+
+    visibility: visible;
+    opacity: 100;
+    pointer-events: auto;
+  }
+
+  .nav-open .mobile-nav-icons[name="menu-outline"] {
+    display: none;
+  }
+  .nav-open .mobile-nav-icons[name="close-outline"] {
+    display: block;
+  }
+
+  /* ********************************** */
+  /* HERO SECTION */
+  /* ********************************** */
+
+  .hero-sec {
+    text-align: center;
+  }
+
+  .hero-sec > .container {
+    grid-template-columns: 1fr;
+    padding: 4rem 8rem;
+  }
+
+  .hero-left > h1 {
+    /* font-size: 5rem; */
+    margin-bottom: 4rem;
+  }
+
+  .hero-left-footer {
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+  .hero-right img {
+    width: 60%;
+  }
+
+  /* ********************************** */
+  /* FEATURED IN SECTION */
+  /* ********************************** */
+
+  .featured-in-sec {
+    padding: 4.8rem 2rem;
+  }
+
+  /* ********************************** */
+  /* MEALS SECTION */
+  /* ********************************** */
+
+  .card-text-box > .tertiary-heading {
+    font-size: 2.5rem;
+  }
+
+  /* ********************************** */
+  /* TESTIMONIAL SECTION */
+  /* ********************************** */
+
+  .testimonial-sec {
+    padding: 2rem 0;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .testimonial-card-container {
+    gap: 5rem;
+  }
+
+  .testimonials {
+    line-height: 1.5;
+  }
+
+  .testimonial-gallery {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  /* ********************************** */
+  /* FORM SECTION */
+  /* ********************************** */
+
+  .form {
+    grid-template-columns: 1fr;
+  }
 }
 
 /******************************************/
-/* FOR 640PX (This will be the conatiner size for this media) and FOR sm SCREEN
+/* FOR 700PX (This will be the conatiner size for this media) and FOR sm SCREEN
 /******************************************/
 
-@media (max-width: 40em) {
+@media (max-width: 44em) {
+  /* ********************************** */
+  /* MEALS SECTION */
+  /* ********************************** */
+
+  .meals-main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .meals-main .list-card {
+    grid-column: 1/-1;
+    justify-self: center;
+  }
+
+  /* ********************************** */
+  /* PRICING SECTION */
+  /* ********************************** */
+
+  .pricing-sec > div:nth-child(2) {
+    gap: 2rem;
+  }
+
+  .pricing-card {
+    width: 100%;
+  }
+
+  /* ********************************** */
+  /* PRICING FEATURE SECTION */
+  /* ********************************** */
+
+  .price-feature-sec > .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ********************************** */
+  /* FOOTER SECTION */
+  /* ********************************** */
+
+  .footer-sec > .container {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .footer-img-box,
+  .footer-address {
+    grid-row: 2;
+    grid-column: span 3;
+  }
+
+  .footer-nav-link {
+    grid-row: 1/2;
+    grid-column: span 2;
+  }
+
+  .footer-img-box > a > img {
+    width: 50%;
+  }
 }
+
+/******************************************/
+/* FOR 700PX (This will be the conatiner size for this media) and FOR sm SCREEN
+/******************************************/
+
+@media (max-width: 37em) {
+  html {
+    font-size: 37.5%;
+  }
+
+  /* ********************************** */
+  /* HERO SECTION */
+  /* ********************************** */
+
+  .hero-sec {
+    text-align: center;
+  }
+
+  .hero-sec > .container {
+    grid-template-columns: 1fr;
+    padding: 2rem 4rem;
+  }
+
+  .hero-left > h1 {
+    /* font-size: 5rem; */
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-left-footer {
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+
+  .hero-right img {
+    width: 80%;
+  }
+
+  /* ********************************** */
+  /* HOW IT WORKS SECTION */
+  /* ********************************** */
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .step-img-box-1 {
+    grid-row: 1/2;
+  }
+
+  .step-img-box-3 {
+    grid-row: 5/6;
+  }
+
+  /* ********************************** */
+  /* FORM SECTION */
+  /* ********************************** */
+
+  .form-sec > .container {
+    grid-template-columns: 1fr;
+  }
+
+  .form-img-box {
+    height: 85rem;
+    grid-row: 1/2;
+  }
+}
+
+
+@media (max-width: 25em) {
+  
+  html {
+    font-size: 31.25%;
+  }
+
+  .grid-col-2,
+  .grid-col-3,
+  .grid-col-4 {
+    grid-template-columns: 1fr;
+  }
+
+
+  
+  /* ********************************** */
+  /* TESTIMONIAL SECTION */
+  /* ********************************** */
+
+  .testimonial-card-container {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+
+  /* ********************************** */
+  /* PRICING FEATURE SECTION */
+  /* ********************************** */
+
+  .price-feature-sec > .container {
+    grid-template-columns: 1fr;
+    padding: 0 4rem;
+  }
+}  

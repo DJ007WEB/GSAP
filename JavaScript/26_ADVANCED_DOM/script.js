@@ -155,7 +155,7 @@ const animateSec = function (entries, observer) {
 
   if (!entry.isIntersecting) return;
 
-  // entry.target.classList.remove('hidden');
+  entry.target.classList.remove('hidden');
   sectionObserver.unobserve(entry.target);
 };
 
@@ -166,7 +166,7 @@ const sectionObserver = new IntersectionObserver(animateSec, {
 
 sections.forEach((section) => {
   sectionObserver.observe(section);
-  // section.classList.add('hidden');
+  section.classList.add('hidden');
 });
 
 // Lazy Loading

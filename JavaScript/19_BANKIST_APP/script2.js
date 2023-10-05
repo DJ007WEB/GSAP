@@ -6,14 +6,14 @@ const account1 = {
   pin: 1111,
 
   movementsDates: [
-    "2019-11-18T21:31:17.178Z",
-    "2019-12-23T07:42:02.383Z",
-    "2020-01-28T09:15:04.904Z",
-    "2020-04-01T10:17:24.185Z",
-    "2020-05-08T14:11:59.604Z",
-    "2020-05-27T17:01:17.194Z",
-    "2020-07-11T23:36:17.929Z",
-    "2020-07-12T10:51:36.790Z",
+    "2023-01-18T21:31:17.178Z",
+    "2023-02-23T07:42:02.383Z",
+    "2023-03-28T09:15:04.904Z",
+    "2023-04-01T10:17:24.185Z",
+    "2023-05-08T14:11:59.604Z",
+    "2023-06-27T17:01:17.194Z",
+    "2023-10-01T23:36:17.929Z",
+    "2023-10-04T10:51:36.790Z",
   ],
   currency: "EUR",
   locale: "pt-PT", // de-DE
@@ -26,14 +26,14 @@ const account2 = {
   pin: 2222,
 
   movementsDates: [
-    "2019-11-01T13:15:33.035Z",
-    "2019-11-30T09:48:16.867Z",
-    "2019-12-25T06:04:23.907Z",
-    "2020-01-25T14:18:46.235Z",
-    "2020-02-05T16:33:06.386Z",
-    "2020-04-10T14:43:26.374Z",
-    "2020-06-25T18:49:59.371Z",
-    "2020-07-26T12:01:20.894Z",
+    "2023-01-01T13:15:33.035Z",
+    "2023-02-30T09:48:16.867Z",
+    "2023-03-25T06:04:23.907Z",
+    "2023-04-25T14:18:46.235Z",
+    "2023-05-05T16:33:06.386Z",
+    "2023-06-10T14:43:26.374Z",
+    "2023-10-01T18:49:59.371Z",
+    "2023-10-04T12:01:20.894Z",
   ],
   currency: "USD",
   locale: "en-US",
@@ -84,7 +84,66 @@ const userName = function (accs) {
 
 userName(accounts);
 
-// 2 UPDATE UI
+// 2 GET THE DATE AND TIME
+
+const getMovDateorDes = function (date, locale) {
+  const calcDays = function (date1, date2) {
+    return Math.round(Math.abs(date2 - date1) / (24 * 60 * 60 * 1000));
+  };
+
+  const numOfDays = calcDays(date, new Date());
+
+  if (numOfDays === 0) {
+    return `Today`;
+  }
+  if (numOfDays === 1) {
+    return `Yesterday`;
+  }
+  if (numOfDays <= 7) {
+    return `${numOfDays} days ago`;
+  }
+
+  return new Intl.DateTimeFormat(locale).format(date);
+};
+
+// 3 FOTMATTED NUMBER
+
+const fotmatNumbers = function (value, curr, locale) {
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: `${curr}`,
+  }).format(value);
+};
+
+// 4 SETTING TIMER
+
+const setLogOutTimer = function () {
+  let time = 60;
+
+  const tick = () => {
+    let min = `${Math.floor(time / 60)}`.padStart(2,0);
+
+    let sec = `${Math.floor(time % 60)}`.padStart(2,0);
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if(time === 0) {
+      clearInterval(timer);
+
+      containerApp.style.opacity = 0;
+      labelWelcome.innerHTML = `Log in to get started`;
+    }
+
+    time--;
+  }
+
+  tick();
+  const timer = setInterval(tick, 1000);
+
+  return timer;
+ 
+};
+
+// 5 UPDATE UI
 
 const displayMoveBalSummary = function (acc, sorting = false) {
   containerMovements.innerHTML = "";
@@ -92,18 +151,14 @@ const displayMoveBalSummary = function (acc, sorting = false) {
   // GETTING THE DATE OF THE LOG IN TIME
 
   const loginDate = new Date();
-  const date = `${loginDate.getDate()}`.padStart(2, 0);
-  const month = `${loginDate.getMonth()+1}`.padStart(2, 0);
-  const year = loginDate.getFullYear();
 
-  // GETTING THE TIME OF LOG IN 
-
-  console.log(loginDate);
-
-  const hour = `${loginDate.getHours()}`.padStart(2,0);
-  const min = `${loginDate.getMinutes()}`.padStart(2,0);
-
-  labelDate.textContent = `${date}/${month}/${year}, ${hour}:${min}`;
+  labelDate.textContent = new Intl.DateTimeFormat(currAccount.locale, {
+    hour: "2-digit",
+    minute: "2-digit",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(loginDate);
 
   // SORTING
 
@@ -121,17 +176,20 @@ const displayMoveBalSummary = function (acc, sorting = false) {
 
     // GETTING THE DETAILS OF CORRESPONDING DATES OF THE TRANSACTIONS
     const currDate = new Date(acc.movementsDates[i]);
-    const date = `${currDate.getDate()}`.padStart(2, 0);
-    const month = `${currDate.getMonth()+1}`.padStart(2, 0);
-    const year = currDate.getFullYear();
+
+    const displayDate = getMovDateorDes(currDate, currAccount.locale);
 
     const html = `
       <div class="movements__row">
       <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-    <div class="movements__date">${date}/${month}/${year}</div>
-      <div class="movements__value">${mov}€</div>
+    <div class="movements__date">${displayDate}</div>
+      <div class="movements__value">${fotmatNumbers(
+        mov,
+        currAccount.currency,
+        currAccount.locale
+      )}</div>
     </div>`;
 
     containerMovements.insertAdjacentHTML("afterbegin", html);
@@ -140,7 +198,11 @@ const displayMoveBalSummary = function (acc, sorting = false) {
   // DISPLAYING THE TOTAL BALANCE
   acc.balance = acc.movements.reduce((acc, curr) => acc + curr, 0);
 
-  labelBalance.innerHTML = `${acc.balance}€`;
+  labelBalance.innerHTML = `${fotmatNumbers(
+    acc.balance,
+    currAccount.currency,
+    currAccount.locale
+  )}`;
 
   // DISPLAYING THE SUMMARY BALANCE
   // DEPOSITS
@@ -165,11 +227,12 @@ const displayMoveBalSummary = function (acc, sorting = false) {
     .reduce((acc, curr) => acc + curr, 0);
 
   labelSumInterest.innerHTML = `${interest.toFixed(2)}€`;
+
 };
 
-// 3 IMPLEMENTING LOG IN
+// 6 IMPLEMENTING LOG IN
 
-let currAccount;
+let currAccount, timer;
 
 const checkLogIn = function (e) {
   e.preventDefault();
@@ -190,10 +253,15 @@ const checkLogIn = function (e) {
     inputLoginPin.blur();
 
     displayMoveBalSummary(currAccount);
+
+    // TIMER GOES HERE
+
+    if(timer) clearInterval(timer);
+    timer = setLogOutTimer();
   }
 };
 
-// 4 MONEY TRANSFER
+// 7 MONEY TRANSFER
 
 const transferMoney = function (e) {
   e.preventDefault();
@@ -217,11 +285,16 @@ const transferMoney = function (e) {
 
     displayMoveBalSummary(currAccount);
 
+    // RESETING THE TIMER
+    
+    clearInterval(timer);
+    timer = setLogOutTimer();
+
     inputTransferTo.value = inputTransferAmount.value = "";
   }
 };
 
-// 5 LOAN REQUEST
+// 8 LOAN REQUEST
 
 const loanReq = function (e) {
   e.preventDefault();
@@ -234,11 +307,16 @@ const loanReq = function (e) {
     currAccount.movementsDates.push(new Date().toISOString());
     displayMoveBalSummary(currAccount);
 
+    // RESETING THE TIMER
+
+    clearInterval(timer);
+    timer = setLogOutTimer();
+
     inputLoanAmount.value = "";
   }
 };
 
-// 6 CLOSE ACCOUNT
+// 9 CLOSE ACCOUNT
 
 const closeAcc = function (e) {
   e.preventDefault();

@@ -75,10 +75,17 @@ userName(accounts);
 
 // 2 UPDATE UI
 
-const displayMoveBalSummary = function (acc) {
+const displayMoveBalSummary = function (acc, sorting = false) {
   containerMovements.innerHTML = "";
+
+  // SORTING
+
+  const sortedMov = sorting
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
+
   // DISPLAYING THE MOVEMENTS
-  acc.movements.forEach((mov, i) => {
+  sortedMov.forEach((mov, i) => {
     const type = mov > 0 ? "deposit" : "withdrawal";
 
     const html = `
@@ -148,10 +155,95 @@ const checkLogIn = function (e) {
   }
 };
 
+// 4 MONEY TRANSFER
 
+const transferMoney = function (e) {
+  e.preventDefault();
 
+  const receiverAcc = accounts.find(
+    (acc) => acc.userName === inputTransferTo.value
+  );
+  const transAmount = Number(inputTransferAmount.value);
 
+  if (
+    receiverAcc &&
+    currAccount.userName !== receiverAcc?.userName &&
+    transAmount > 0 &&
+    transAmount <= currAccount.balance
+  ) {
+    currAccount.movements.push(-transAmount);
+    receiverAcc.movements.push(transAmount);
 
+    displayMoveBalSummary(currAccount);
+
+    inputTransferTo.value = inputTransferAmount.value = "";
+  }
+};
+
+// 5 LOAN REQUEST
+
+const loanReq = function (e) {
+  e.preventDefault();
+
+  const loanAmo = Number(inputLoanAmount.value);
+
+  if (currAccount.movements.some((mov) => mov > loanAmo * 0.1)) {
+    currAccount.movements.push(loanAmo);
+    displayMoveBalSummary(currAccount);
+
+    inputLoanAmount.value = "";
+  }
+};
+
+// 6 CLOSE ACCOUNT
+
+const closeAcc = function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currAccount.userName &&
+    Number(inputClosePin.value) === currAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      (acc) => acc.userName === currAccount.userName
+    );
+
+    inputCloseUsername.value = inputClosePin.value = "";
+
+    accounts.splice(index, 1);
+
+    labelWelcome.innerHTML = `Log in to get started`;
+
+    containerApp.style.opacity = 0;
+  }
+};
+
+//////////////////////////////////////////////////
+///  ACTIONS
+/////////////////////////////////////////////////
 
 // LOG IN BUTTON
 btnLogin.addEventListener("click", checkLogIn);
+
+// TRANSFER MONEY BUTTON
+
+btnTransfer.addEventListener("click", transferMoney);
+
+// LOAN REQUEST BUTTON
+
+btnLoan.addEventListener("click", loanReq);
+
+// CLOSE ACCOUNT BUTTON
+
+btnClose.addEventListener("click", closeAcc);
+
+// SORTING BUTTON
+
+let sortState = false;
+
+btnSort.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  displayMoveBalSummary(currAccount, !sortState);
+  sortState = !sortState;
+});

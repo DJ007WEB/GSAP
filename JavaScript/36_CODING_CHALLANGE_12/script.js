@@ -30,45 +30,30 @@ const renderCountry = function (data, className = "") {
   countriesContainer.style.opacity = 1;
 };
 
-const renderError = function (msg) {
-  countriesContainer.insertAdjacentText("beforeend", msg);
+const renederError = function (errMsg) {
+  countriesContainer.insertAdjacentText("beforeend", errMsg);
 
   countriesContainer.style.opacity = 1;
 };
 
-const getJSon = function (url, errorMsg = "Something went wrong") {
-  return fetch(url).then(function (response) {
-    if (!response.ok) throw new Error(`${errorMsg} ${response.status}`);
+const whereAmI = function (lat, lng) {
+  fetch(
+    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
+  ).then((response) => {
+    if(!response.ok) throw new Error(`Problem with Reverser GeoCoding ${response.status}`)
 
     return response.json();
-  });
+}).then((data) => {
+    console.log(data);
+    return fetch(`https://restcountries.com/v3.1/name/${data.countryName}`)
+}).then((response) => {
+    if(!response.ok) throw new Error(`Country not found ${response.status}`);
+
+    return response.json();
+}).then((data) => {
+    renderCountry(data[0]);
+})
+   
 };
 
-const getCountryData = function (country) {
-  getJSon(`https://restcountries.com/v3.1/name/${country}`, "Country Not Found")
-    .then(function (data) {
-      renderCountry(data[0]);
-
-      const neighbour = data[0].borders?.[0];
-
-      return getJSon(
-        `https://restcountries.com/v3.1/alpha/${neighbour}`,
-        "Neighbour Not Found"
-      );
-    })
-
-    .then((data) => {
-      console.log(data);
-      renderCountry(data[0], "neighbour");
-    })
-    .catch((err) => {
-      console.log(err);
-      renderError(`Something Went Wrong ${err.message}. Try Again!`);
-    });
-};
-
-btn.addEventListener("click", function () {
-  getCountryData("portugal");
-});
-
-
+whereAmI(52.508, 13.381);

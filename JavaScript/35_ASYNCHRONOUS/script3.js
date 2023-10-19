@@ -227,25 +227,92 @@ const whereAmI = async function () {
 
     const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
 
-    if(!resGeo.ok) throw new Error(`Problem in getting Geocoding`)
+    if (!resGeo.ok) throw new Error(`Problem in getting Geocoding`);
 
     const dataGeo = await resGeo.json();
+
+    console.log(dataGeo);
 
     const res = await fetch(
       `https://restcountries.com/v3.1/name/${dataGeo.country}`
     );
 
-    if(!res.ok) throw new Error(`Problem in getting the details`);
+    if (!res.ok) throw new Error(`Problem in getting the details`);
 
     const data = await res.json();
 
     console.log(data);
 
     renderCountry(data[0]);
+    return `You are in ${dataGeo.city}, ${dataGeo.country}`;
   } catch (err) {
     console.error(err);
-    renderError(`Something went wrong ${err.message}`)
+    renderError(`Something went wrong ${err.message}`);
+    throw err;
   }
 };
 
-whereAmI();
+// whereAmI().then((res) => {
+//   console.log(res);
+// }).catch((err) => {
+//   console.log(err);
+// })
+
+// (async function () {
+//   try {
+//     const res = await whereAmI();
+//     console.log(res);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// })();
+
+// PROMISES COMBINATOR
+
+// const getThreeCountries = async function (c1, c2, c3) {
+//   try {
+//     // const [res1] = await getJSON(`https://restcountries.com/v3.1/name/${c1}`);
+//     // const [res2] = await getJSON(`https://restcountries.com/v3.1/name/${c2}`);
+//     // const [res3] = await getJSON(`https://restcountries.com/v3.1/name/${c3}`);
+
+//     // console.log(res1, res2, res3);
+
+//     const data = await Promise.all([
+//       getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+//       getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+//       getJSON(`https://restcountries.com/v3.1/name/${c3}`),
+//     ]);
+
+//     console.log(data);
+//     console.log(data.map(d => d[0].capital[0]));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// getThreeCountries("india", "bangladesh", "bhutan");
+
+// PROMISE RACE
+
+const timeOut = function (secs) {
+  return new Promise(function (_, reject) {
+    setTimeout(() => {
+      reject(new Error(`Response took too long`));
+    }, secs * 1000);
+  });
+};
+
+Promise.race([
+  getJSON(`https://restcountries.com/v3.1/name/bhutan`),
+  timeOut(0.25),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));
+
+Promise.any([
+  Promise.resolve("Resolved"),
+  Promise.reject("Reject"),
+  getJSON(`https://restcountries.com/v3.1/name/bhutan`),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));

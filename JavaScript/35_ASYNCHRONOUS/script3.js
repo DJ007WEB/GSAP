@@ -150,17 +150,17 @@ const getCountryData = function (country) {
 
 // PROMISES
 
-const lotteryPromis = new Promise(function (resolve, reject) {
-  console.log(`Lottery is happening`);
+// const lotteryPromis = new Promise(function (resolve, reject) {
+//   console.log(`Lottery is happening`);
 
-  setTimeout(() => {
-    if (Math.random() >= 0.5) {
-      resolve(`You won the Lottery`);
-    } else {
-      reject(new Error(`You lost the money`));
-    }
-  }, 2000);
-});
+//   setTimeout(() => {
+//     if (Math.random() >= 0.5) {
+//       resolve(`You won the Lottery`);
+//     } else {
+//       reject(new Error(`You lost the money`));
+//     }
+//   }, 2000);
+// });
 
 // lotteryPromis
 //   .then((res) => console.log(res))
@@ -184,37 +184,68 @@ const getPosition = function () {
 //   .then((res) => console.log(res.coords))
 //   .catch((err) => console.log(err));
 
-const whereAmI = function () {
-  getPosition()
-    .then((res) => {
-      console.log(res);
-      const { latitude: lat, longitude: lng } = res.coords;
+// const whereAmI = function () {
+//   getPosition()
+//     .then((res) => {
+//       console.log(res);
+//       const { latitude: lat, longitude: lng } = res.coords;
 
-      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-    })
+//       return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     })
 
-    .then((res) => {
-      console.log(res);
-      if (!res.ok) throw new Error(`Problem with geocoding`);
-      return res.json();
-    })
-    .then((data) => {
-      console.log(data);
-      console.log(`You are in ${data.city}, ${data.country}`);
+//     .then((res) => {
+//       console.log(res);
+//       if (!res.ok) throw new Error(`Problem with geocoding`);
+//       return res.json();
+//     })
+//     .then((data) => {
+//       console.log(data);
+//       console.log(`You are in ${data.city}, ${data.country}`);
 
-      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
-    })
-    .then((res) => {
-      if (!res.ok) throw new Error(`Unable to find Country`);
-      return res.json();
-    })
-    .then((data) => {
-      renderCountry(data[0]);
-    })
-    .catch((err) => {
-      console.log(`${err}`);
-      renderError(`Something went wrong. ${err.message}`);
-    });
+//       return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+//     })
+//     .then((res) => {
+//       if (!res.ok) throw new Error(`Unable to find Country`);
+//       return res.json();
+//     })
+//     .then((data) => {
+//       renderCountry(data[0]);
+//     })
+//     .catch((err) => {
+//       console.log(`${err}`);
+//       renderError(`Something went wrong. ${err.message}`);
+//     });
+// };
+
+// btn.addEventListener("click", whereAmI);
+
+const whereAmI = async function () {
+  try {
+    const pos = await getPosition();
+
+    const { latitude: lat, longitude: lng } = pos.coords;
+
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+
+    if(!resGeo.ok) throw new Error(`Problem in getting Geocoding`)
+
+    const dataGeo = await resGeo.json();
+
+    const res = await fetch(
+      `https://restcountries.com/v3.1/name/${dataGeo.country}`
+    );
+
+    if(!res.ok) throw new Error(`Problem in getting the details`);
+
+    const data = await res.json();
+
+    console.log(data);
+
+    renderCountry(data[0]);
+  } catch (err) {
+    console.error(err);
+    renderError(`Something went wrong ${err.message}`)
+  }
 };
 
-btn.addEventListener("click", whereAmI);
+whereAmI();

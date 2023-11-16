@@ -1,20 +1,20 @@
-@import 'abstracts/functions';
-@import 'abstracts/mixins';
-@import 'abstracts/variables';
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
 
-@import './base/base';
-@import './base/animation';
-@import './base/typography';
-@import './base/utilities';
+@import "./base/base";
+@import "./base/animation";
+@import "./base/typography";
+@import "./base/utilities";
 
-@import 'components/button';
+@import "components/button";
+@import "components/compositions";
+@import "components/featurebox";
 
-@import 'layouts/grid';
-@import 'layouts/header';
+@import "layouts/grid";
+@import "layouts/header";
 
-
-@import 'pages/home';
-
+@import "pages/home";
 
 /*
 
@@ -32,24 +32,12 @@ PADDING (px) MARGIN AND SPACING ==> 1 / 2 TO 20 (gap 2) / 24 TO 48 (gap 4) / 56 
     Dark Green : #28b485
 */
 
-
-
 /******************************************/
 /* GENERAL STYLE
 /******************************************/
-
-
 
 /******************************************/
 /* HEADER
 /******************************************/
 
-
-
-
-
 /* ANIMATING THE HEADING */
-
-
-
-

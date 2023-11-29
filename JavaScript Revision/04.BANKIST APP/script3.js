@@ -113,9 +113,18 @@ const calcDisplaySummeries = (accs) => {
 
   //  iv) TOTAL BALANCE
 
-  const totalBal = accs.movements.reduce((acc, curr) => acc + curr, 0);
+  accs.totalBalance = accs.movements.reduce((acc, curr) => acc + curr, 0);
 
-  labelBalance.textContent = `${totalBal}€`;
+  labelBalance.textContent = `${accs.totalBalance}€`;
+};
+
+// UPDATING UI
+
+const updateUI = (accs) => {
+  displayMovments(accs);
+
+  // iv) DISPLAYING SUMMERIES
+  calcDisplaySummeries(accs);
 };
 /////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
@@ -134,7 +143,7 @@ const createUserName = (accs) => {
 
 createUserName(accounts);
 
-console.log(accounts);
+// console.log(accounts);
 
 // 02 IMPLEMENTING LOG IN ///////////////////////////////////////////////////////////////////////////
 
@@ -154,13 +163,38 @@ btnLogin.addEventListener("click", (e) => {
     containerApp.style.opacity = 100;
 
     // iii) DISPLAYING MOVEMENTS
-    displayMovments(currentAccount);
-
-    // iv) DISPLAYING SUMMERIES
-    calcDisplaySummeries(currentAccount);
+    updateUI(currentAccount);
   }
 
   inputLoginUsername.value = inputLoginPin.value = "";
 
   inputLoginPin.blur();
+});
+
+// 03 ENABLING TRANSFERRING FACILITY
+
+btnTransfer.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const transferringTo = accounts.find(
+    (accs) => accs.username === inputTransferTo.value
+  );
+
+  const transferringAmount = +inputTransferAmount.value;
+
+  if (
+    transferringAmount > 0 &&
+    transferringAmount <= currentAccount.totalBalance &&
+    transferringTo &&
+    transferringTo.value !== currentAccount.username
+  ) {
+    transferringTo.movements.push(transferringAmount);
+    currentAccount.movements.push(-transferringAmount);
+
+    updateUI(currentAccount);
+
+    inputTransferAmount.value = inputTransferTo.value = "";
+
+    inputTransferAmount.blur();
+  }
 });

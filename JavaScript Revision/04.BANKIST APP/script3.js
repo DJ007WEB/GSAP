@@ -74,6 +74,30 @@ const inputClosePin = document.querySelector(".form__input--pin");
 ///////////////////////////////////////////////////////////////
 /// FUNCTIONS THAT WILL BE NEEDED///////////////////////////////
 
+// GETTING THE DATE
+
+const formatMovementDate = (date, locale) => {
+  const daysPassed = (date1, date2) => {
+    return Math.round(Math.abs((date1 - date2) / (1000 * 60 * 60 * 24)));
+  };
+
+  const numOfDays = daysPassed(new Date(), date);
+
+  if (numOfDays === 0) {
+    return `Today`;
+  }
+
+  if (numOfDays === 1) {
+    return `Yesterday`;
+  }
+
+  if (numOfDays <= 210) {
+    return `${numOfDays} days ago`;
+  }
+
+  return new Intl.DateTimeFormat(locale).format(date);
+};
+
 // DISPLAYING MOVEMENTS FUNCTION
 const displayMovments = (accs, sorted = false) => {
   const movs = sorted
@@ -83,12 +107,16 @@ const displayMovments = (accs, sorted = false) => {
   movs.forEach((mov, i) => {
     const type = mov > 0 ? "deposit" : "withdrawal";
 
+    const movDate = new Date(accs.movementsDates[i]);
+
+    const displayDate = formatMovementDate(movDate, accs.locale);
+
     const html = `
     <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__date">3 days ago</div>
+        <div class="movements__date">${displayDate}</div>
         <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
         `;
@@ -176,7 +204,25 @@ btnLogin.addEventListener("click", (e) => {
     //  ii) PIN VALID THEN SHOWING UI
     containerApp.style.opacity = 100;
 
-    // iii) DISPLAYING MOVEMENTS
+    // iii) DISPLAYING LOG IN DATE
+
+    const logIndate = new Date();
+
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      // weekday: "long",
+    };
+
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(logIndate);
+
+    // iv) DISPLAYING MOVEMENTS
     updateUI(currentAccount);
   }
 
@@ -205,6 +251,11 @@ btnTransfer.addEventListener("click", (e) => {
     transferringTo.movements.push(transferringAmount);
     currentAccount.movements.push(-transferringAmount);
 
+    // PUSHING THE DATES
+
+    transferringTo.movementsDates.push(new Date().toISOString());
+    currentAccount.movementsDates.push(new Date().toISOString());
+
     updateUI(currentAccount);
 
     inputTransferAmount.value = inputTransferTo.value = "";
@@ -223,6 +274,7 @@ btnLoan.addEventListener("click", (e) => {
     currentAccount.movements.some((mov) => mov > +inputLoanAmount.value * 0.1)
   ) {
     currentAccount.movements.push(Math.floor(+inputLoanAmount.value));
+    currentAccount.movementsDates.push(new Date().toISOString());
 
     updateUI(currentAccount);
   }

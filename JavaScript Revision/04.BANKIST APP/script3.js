@@ -98,6 +98,41 @@ const formatMovementDate = (date, locale) => {
   return new Intl.DateTimeFormat(locale).format(date);
 };
 
+// FORMATTING CURRENCIES
+
+const formatCurr = (value, locale, currency) => {
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: currency,
+  }).format(value);
+};
+
+// TIMER FUNCTION
+
+const startTimer = () => {
+  const tick = () => {
+    const min = String(Math.floor(time / 60)).padStart(2, "0");
+    const sec = String(time % 60).padStart(2, "0");
+
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `Log in to get started`;
+      containerApp.style.opacity = 0;
+    }
+
+    time--;
+  };
+
+  let time = 120;
+
+  tick();
+  const timer = setInterval(tick, 1000);
+
+  return timer;
+};
+
 // DISPLAYING MOVEMENTS FUNCTION
 const displayMovments = (accs, sorted = false) => {
   const movs = sorted
@@ -111,13 +146,15 @@ const displayMovments = (accs, sorted = false) => {
 
     const displayDate = formatMovementDate(movDate, accs.locale);
 
+    const formattedMov = formatCurr(mov, accs.locale, accs.currency);
+
     const html = `
     <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${formattedMov}</div>
       </div>
         `;
 
@@ -133,9 +170,7 @@ const calcDisplaySummeries = (accs) => {
     .filter((mov) => mov > 0)
     .reduce((accu, depo) => accu + depo, 0);
 
-  console.log(deposits);
-
-  labelSumIn.textContent = `${deposits.toFixed(2)}€`;
+  labelSumIn.textContent = formatCurr(deposits, accs.locale, accs.currency);
 
   //   ii) INTERESTS
 
@@ -145,7 +180,11 @@ const calcDisplaySummeries = (accs) => {
     .filter((int) => int >= 1)
     .reduce((accu, curr) => accu + curr, 0);
 
-  labelSumInterest.textContent = `${interests.toFixed(2)}€`;
+  labelSumInterest.textContent = formatCurr(
+    interests,
+    accs.locale,
+    accs.currency
+  );
 
   // iii) WITHDRAWAL
 
@@ -153,13 +192,17 @@ const calcDisplaySummeries = (accs) => {
     .filter((mov) => mov < 0)
     .reduce((accu, curr) => accu + curr, 0);
 
-  labelSumOut.textContent = `${Math.abs(withDrawal).toFixed(2)}€`;
+  labelSumOut.textContent = formatCurr(withDrawal, accs.locale, accs.currency);
 
   //  iv) TOTAL BALANCE
 
   accs.totalBalance = accs.movements.reduce((acc, curr) => acc + curr, 0);
 
-  labelBalance.textContent = `${accs.totalBalance.toFixed(2)}€`;
+  labelBalance.textContent = formatCurr(
+    accs.totalBalance,
+    accs.locale,
+    accs.currency
+  );
 };
 
 // UPDATING UI
@@ -189,7 +232,7 @@ createUserName(accounts);
 
 // 02 IMPLEMENTING LOG IN ///////////////////////////////////////////////////////////////////////////
 
-let currentAccount;
+let currentAccount, timer;
 
 btnLogin.addEventListener("click", (e) => {
   e.preventDefault();
@@ -199,6 +242,9 @@ btnLogin.addEventListener("click", (e) => {
   });
 
   if (currentAccount?.pin === +inputLoginPin.value) {
+    // STARTING THE TIMER
+    if (timer) clearInterval(timer);
+    timer = startTimer();
     // i) WELCOME MESSAGE
     labelWelcome.textContent = `Welcome ${currentAccount.owner.split(" ")[0]}`;
     //  ii) PIN VALID THEN SHOWING UI
@@ -258,6 +304,10 @@ btnTransfer.addEventListener("click", (e) => {
 
     updateUI(currentAccount);
 
+    clearInterval(timer);
+
+    timer = startTimer();
+
     inputTransferAmount.value = inputTransferTo.value = "";
 
     inputTransferAmount.blur();
@@ -269,14 +319,21 @@ btnTransfer.addEventListener("click", (e) => {
 btnLoan.addEventListener("click", (e) => {
   e.preventDefault();
 
+  const amount = Math.floor(+inputLoanAmount.value);
+
   if (
     +inputLoanAmount.value > 0 &&
     currentAccount.movements.some((mov) => mov > +inputLoanAmount.value * 0.1)
   ) {
-    currentAccount.movements.push(Math.floor(+inputLoanAmount.value));
-    currentAccount.movementsDates.push(new Date().toISOString());
+    setTimeout(() => {
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    updateUI(currentAccount);
+      updateUI(currentAccount);
+    }, 2500);
+    clearInterval(timer);
+
+    timer = startTimer();
   }
 
   inputLoanAmount.value = "";

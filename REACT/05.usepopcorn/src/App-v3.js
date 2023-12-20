@@ -162,19 +162,22 @@ function Logo() {
 function Search({ query, onSetQuery }) {
   const inputEl = useRef();
 
-  useEffect(function () {
-    function callback(e) {
-      if (document.activeElement === inputEl.current) return;
-      if (e.code === "Enter") {
-        inputEl.current.focus();
-        onSetQuery("");
+  useEffect(
+    function () {
+      function callback(e) {
+        if (document.activeElement === inputEl.current) return;
+        if (e.code === "Enter") {
+          inputEl.current.focus();
+          onSetQuery("");
+        }
       }
-    }
 
-    document.addEventListener("keydown", callback);
+      document.addEventListener("keydown", callback);
 
-    return () => document.removeEventListener("keydown", callback);
-  }, [onSetQuery]);
+      return () => document.removeEventListener("keydown", callback);
+    },
+    [onSetQuery]
+  );
 
   return (
     <input
@@ -258,9 +261,19 @@ function MovieSelected({ selectedId, onClosingMovie, onAddMovie, watched }) {
     (curr) => curr.imdbID === selectedId
   )?.userRating;
 
+  const countRef = useRef(0);
+
+  useEffect(
+    function () {
+      if (userRating) {
+        countRef.current++;
+      }
+    },
+    [userRating]
+  );
+
   const {
     Title: title,
-    Year: year,
     Poster: poster,
     Runtime: runtime,
     imdbRating,
@@ -327,6 +340,7 @@ function MovieSelected({ selectedId, onClosingMovie, onAddMovie, watched }) {
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ").at(0)),
       userRating,
+      countRate: countRef.current,
     };
 
     onAddMovie(newMovie);

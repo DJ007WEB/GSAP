@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 import StarRating from "./StarRating";
 
-
-
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -11,7 +9,6 @@ const KEY = "c83b9b91";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,6 +17,12 @@ export default function App() {
   const [query, setQuery] = useState("");
 
   const [selectedId, setSelectedId] = useState(null);
+
+  const [watched, setWatched] = useState(() => {
+    const storedMovies = localStorage.getItem("watched");
+
+    return JSON.parse(storedMovies);
+  });
 
   function handleMovieSelected(id) {
     setSelectedId((curr) => (curr === id ? null : id));
@@ -84,6 +87,13 @@ export default function App() {
       };
     },
     [query]
+  );
+
+  useEffect(
+    function () {
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched]
   );
 
   return (
@@ -188,28 +198,6 @@ function Box({ children }) {
     </div>
   );
 }
-
-// function Watchedbox() {
-//
-
-//   const [isOpen2, setIsOpen2] = useState(true);
-
-//   return (
-//     <div className="box">
-//       <button
-//         className="btn-toggle"
-//         onClick={() => setIsOpen2((open) => !open)}
-//       >
-//         {isOpen2 ? "–" : "+"}
-//       </button>
-//       {isOpen2 && (
-//         <>
-//
-//         </>
-//       )}
-//     </div>
-//   );
-// }
 
 function MovieList({ movies, onSelectedMovie }) {
   return (

@@ -4,7 +4,7 @@ import "./index.css";
 // import App from "./App";
 // import StarRating from "./StarRating";
 // import StarRating2 from "./StarRating2";
-import App from "./App-v2";
+import App from "./App-v3";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

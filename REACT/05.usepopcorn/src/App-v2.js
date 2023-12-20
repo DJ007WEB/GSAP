@@ -58,8 +58,6 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
 
-  console.log(watched);
-
   const [isLoading, setIsLoading] = useState(false);
 
   const [error, setError] = useState("");
@@ -86,12 +84,15 @@ export default function App() {
 
   useEffect(
     function () {
+      const controller = new AbortController();
+
       async function fetchMovies() {
         try {
           setIsLoading(true);
           setError("");
           const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+            { signal: controller.signal }
           );
 
           // console.log(res);
@@ -108,7 +109,9 @@ export default function App() {
           setMovies(data.Search);
         } catch (err) {
           console.log(err);
-          setError(err.message);
+          if (err.name !== "AbortError") {
+            setError(err.message);
+          }
         } finally {
           setIsLoading(false);
         }
@@ -118,7 +121,12 @@ export default function App() {
         setMovies([]);
         return;
       }
+      handleMovieClosed();
       fetchMovies();
+
+      return function () {
+        controller.abort();
+      };
     },
     [query]
   );
@@ -319,6 +327,36 @@ function MovieSelected({ selectedId, onClosingMovie, onAddMovie, watched }) {
       getMovieDetails();
     },
     [selectedId]
+  );
+
+  useEffect(
+    function () {
+      if (!title) return;
+      document.title = `Movie | ${title}`;
+
+      return function () {
+        document.title = `usePopcorn`;
+      };
+    },
+    [title]
+  );
+
+  useEffect(
+    function () {
+      function callback(e) {
+        if (e.code === "Escape") {
+          // console.log("Closing Down");
+          onClosingMovie();
+        }
+      }
+
+      document.addEventListener("keydown", callback);
+
+      return function () {
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [onClosingMovie]
   );
 
   function addingNewMovie() {

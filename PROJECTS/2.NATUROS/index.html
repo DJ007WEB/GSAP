@@ -20,6 +20,42 @@
     <title>Natours | Exciting tours for adventurous people</title>
   </head>
   <body>
+    <!-- NAVIGATION -->
+
+    <div class="navigation">
+      <input type="checkbox" class="navigation__checkbox" id="nav-toggle" />
+      <label for="nav-toggle" class="navigation__btn">
+        <span class="navigation__icon">&nbsp;</span>
+      </label>
+      <!-- HERE IS THE EMPTY DIV -->
+      <div class="navigation__background">&nbsp;</div>
+      <!-- HERE IS THE NAV -->
+      <nav class="navigation__nav">
+        <ul class="navigation__list">
+          <li class="navigation__item">
+            <a href="" class="navigation__link"><span>01</span>About Natours</a>
+          </li>
+          <li class="navigation__item">
+            <a href="" class="navigation__link"><span>02</span>Your benefits</a>
+          </li>
+          <li class="navigation__item">
+            <a href="" class="navigation__link"><span>03</span>Popular tours</a>
+          </li>
+          <li class="navigation__item">
+            <a href="" class="navigation__link"><span>04</span>Stories</a>
+          </li>
+          <li class="navigation__item">
+            <a href="" class="navigation__link"><span>05</span>Book now</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- POPUP -->
+    <div class="popup">
+      <div class="popup__content"></div>
+    </div>
+
     <!-- HEADER PAGE 1  -->
     <header class="header">
       <!-- LOGO BOX -->
@@ -406,7 +442,9 @@
                 </div>
                 <!-- BUTTON -->
                 <div class="form__group">
-                  <button class="btn btn--green u-mt-sm">Next step &rarr;</button>
+                  <button class="btn btn--green u-mt-sm">
+                    Next step &rarr;
+                  </button>
                 </div>
               </form>
             </div>
@@ -420,7 +458,11 @@
     <footer class="footer">
       <!-- UPPER PART OF THE FOOTER -->
       <div class="footer__logo-box">
-        <img src="./img/logo-green-2x.png" alt="footer logo" class="footer__logo">
+        <img
+          src="./img/logo-green-2x.png"
+          alt="footer logo"
+          class="footer__logo"
+        />
       </div>
       <!-- LOWER PART OF THE FOOTER -->
       <div class="row">
@@ -428,18 +470,32 @@
         <div class="col-1-of-2">
           <div class="footer__navigation">
             <ul class="footer__list">
-              <li class="footer__item"><a href="#" class="footer__link">Company</a></li>
-              <li class="footer__item"><a href="#" class="footer__link">Contact us</a></li>
-              <li class="footer__item"><a href="#" class="footer__link">Careeres</a></li>
-              <li class="footer__item"><a href="#" class="footer__link">Privacy policy</a></li>
-              <li class="footer__item"><a href="#" class="footer__link">Terms</a></li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Company</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Contact us</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Careeres</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Privacy policy</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Terms</a>
+              </li>
             </ul>
           </div>
         </div>
         <!-- THIS IS FOR THE COPYRIGHT -->
         <div class="col-1-of-2">
           <p class="footer__copyright">
-            Built by <a href="#" class="footer__link">Jyotirmoy Dutta</a> for learning advanced css and was taught by Jonas Schmedtmann. I have re-created this on my own for learning purposes but credit goes to my sir Jonas Schmedtmann.
+            Built by <a href="#" class="footer__link">Jyotirmoy Dutta</a> for
+            learning advanced css and was taught by
+            <a href="#" class="footer__link">Jonas Schmedtmann.</a> I have
+            re-created this on my own for learning purposes but credit goes to
+            my sir <a href="#" class="footer__link">Jonas Schmedtmann.</a>
           </p>
         </div>
       </div>

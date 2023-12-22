@@ -9,8 +9,11 @@ function App() {
   let [counter, setCounter] = useState(5);
 
   const addValue = () => {
-    counter++;
-    setCounter(counter);
+    // counter++;
+    setCounter(prevCoounter => prevCoounter + 1);
+    setCounter(prevCoounter => prevCoounter + 1);
+    setCounter(prevCoounter => prevCoounter + 1);
+    setCounter(prevCoounter => prevCoounter + 1);
   };
 
   const decreValue = () => {

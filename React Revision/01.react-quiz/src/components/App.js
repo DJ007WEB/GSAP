@@ -6,11 +6,15 @@ import Header from "./Header";
 import Main from "./Main";
 import StartScreen from "./StartScreen";
 import Questions from "./Questions";
+import NextButton from "./NextButton";
+import Footer from "./Footer";
 
 const initialState = {
   questions: [],
   status: "loading",
   index: 0,
+  answer: null,
+  points: 0,
 };
 
 function reducer(state, action) {
@@ -21,6 +25,18 @@ function reducer(state, action) {
       return { ...state, status: "error" };
     case "start":
       return { ...state, status: "active" };
+    case "newAnswer":
+      const curQues = state.questions.at(state.index);
+      return {
+        ...state,
+        answer: action.payload,
+        points:
+          curQues.correctOption === action.payload
+            ? state.points + curQues.points
+            : state.points,
+      };
+    case "nextQuestion":
+      return { ...state, index: state.index++, answer: null };
     default:
       break;
   }
@@ -29,7 +45,7 @@ function reducer(state, action) {
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { questions, status, index } = state;
+  const { questions, status, index, answer } = state;
 
   const numOfQuestions = questions.length;
 
@@ -54,7 +70,19 @@ export default function App() {
         {status === "ready" && (
           <StartScreen numOfQuestions={numOfQuestions} dispatch={dispatch} />
         )}
-        {status === "active" && <Questions question={questions[index]} />}
+        {status === "active" && (
+          <>
+            <Questions
+              question={questions[index]}
+              dispatch={dispatch}
+              answer={answer}
+            />
+
+            <Footer>
+              <NextButton answer={answer} dispatch={dispatch} />
+            </Footer>
+          </>
+        )}
       </Main>
     </div>
   );

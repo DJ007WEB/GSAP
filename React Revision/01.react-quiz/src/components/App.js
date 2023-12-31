@@ -6,6 +6,7 @@ import Header from "./Header";
 import Main from "./Main";
 import StartScreen from "./StartScreen";
 import Questions from "./Questions";
+import Timer from "./Timer";
 import NextButton from "./NextButton";
 import Footer from "./Footer";
 import Progress from "./Progress";
@@ -18,7 +19,10 @@ const initialState = {
   answer: null,
   points: 0,
   highscore: 0,
+  secondsRemaining: 10,
 };
+
+const SECS_PER_QUES = 30;
 
 function reducer(state, action) {
   switch (action.type) {
@@ -27,7 +31,11 @@ function reducer(state, action) {
     case "dataFailed":
       return { ...state, status: "error" };
     case "start":
-      return { ...state, status: "active" };
+      return {
+        ...state,
+        status: "active",
+        secondsRemaining: state.questions.length * SECS_PER_QUES,
+      };
     case "newAnswer":
       const curQues = state.questions.at(state.index);
       return {
@@ -54,6 +62,12 @@ function reducer(state, action) {
         status: "ready",
         highscore: state.highscore,
       };
+    case "tick":
+      return {
+        ...state,
+        secondsRemaining: state.secondsRemaining--,
+        status: state.secondsRemaining === 0 ? "end" : state.status,
+      };
     default:
       break;
   }
@@ -62,7 +76,15 @@ function reducer(state, action) {
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { questions, status, index, answer, points, highscore } = state;
+  const {
+    questions,
+    status,
+    index,
+    answer,
+    points,
+    highscore,
+    secondsRemaining,
+  } = state;
 
   const numOfQuestions = questions.length;
 
@@ -103,6 +125,7 @@ export default function App() {
             />
 
             <Footer>
+              <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
               <NextButton
                 answer={answer}
                 dispatch={dispatch}

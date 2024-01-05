@@ -14,6 +14,7 @@ import {
 import { useCities } from "../contexts/CitiesContext";
 import { useGeolocation } from "../hooks/useGeoLocation";
 import Button from "./Button";
+import { useUrlPosition } from "../hooks/useUrlPostion";
 
 const flagemojiToPNG = (flag) => {
   if (flag === undefined) return;
@@ -26,14 +27,11 @@ const flagemojiToPNG = (flag) => {
 };
 
 export default function Map() {
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const [mapPosition, setMapPosition] = useState([40, 0]);
 
   const { cities } = useCities();
 
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
+  const [lat, lng] = useUrlPosition();
 
   const {
     isLoading: isLoadingPosi,
@@ -72,8 +70,8 @@ export default function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
-        {cities.map((city) => (
-          <Marker position={[city.position.lat, city.position.lng]}>
+        {cities.map((city, i) => (
+          <Marker position={[city.position.lat, city.position.lng]} key={i}>
             <Popup>
               <span>{flagemojiToPNG(city.emoji)}</span>
               <span>{city.cityName}</span>

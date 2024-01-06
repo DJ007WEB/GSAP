@@ -35,6 +35,54 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Castello de la Plana",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-01-06T03:32:18.100Z",
+      "notes": "",
+      "position": {
+        "lat": "40.02117322806479",
+        "lng": "-0.05580616667331784"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Castello de la Plana",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-01-06T03:32:41.604Z",
+      "notes": "dgdsg",
+      "position": {
+        "lat": "40.02117322806479",
+        "lng": "-0.05580616667331784"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "l'Alcora",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-01-06T03:36:00.873Z",
+      "notes": "hjghj",
+      "position": {
+        "lat": "40.08240469537056",
+        "lng": "-0.17372131347656253"
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "Kolkata",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2024-01-06T03:38:42.333Z",
+      "notes": "TEST 2",
+      "position": {
+        "lat": "22.53730518063729",
+        "lng": "88.39118957519531"
+      },
+      "id": 98443201
     }
   ]
 }

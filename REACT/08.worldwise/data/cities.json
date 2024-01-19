@@ -35,6 +35,30 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Castello de la Plana",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-01-19T09:28:05.801Z",
+      "notes": "",
+      "position": {
+        "lat": "40.0218172519417",
+        "lng": "0.009269714355468752"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Castello de la Plana",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-01-19T09:28:11.015Z",
+      "notes": "",
+      "position": {
+        "lat": "40.04731757756962",
+        "lng": "-0.005149841308593751"
+      },
+      "id": 98443199
     }
   ]
 }

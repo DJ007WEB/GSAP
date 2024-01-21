@@ -37,15 +37,15 @@
       "id": "98443197"
     },
     {
-      "id": "5450",
-      "cityName": "Chhatna",
-      "country": "India",
-      "emoji": "🇮🇳",
-      "date": "2024-01-18T12:37:38.404Z",
-      "notes": "",
+      "id": "52e5",
+      "cityName": "Castello de la Plana",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-01-19T08:57:31.695Z",
+      "notes": "TEST",
       "position": {
-        "lat": "23.347435077161844",
-        "lng": "86.92983627319337"
+        "lat": "39.99589959370027",
+        "lng": "0.008926391601562502"
       }
     }
   ]

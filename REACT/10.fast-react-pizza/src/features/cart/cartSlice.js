@@ -58,3 +58,12 @@ export const getTotalCartQuantity = (state) =>
 
 export const getTotalCartPrice = (state) =>
   state.cart.cart.reduce((sum, curr) => sum + curr.totalPrice, 0);
+
+// export const getCurrentQuantity = (id) => (state) =>
+//   state.cart.cart.find((item) => (item.pizzaId === id ? item.quantity : ''));
+
+export const getCurrentQuantityById = function (id) {
+  return function (state) {
+    return state.cart.cart.find((item) => item.pizzaId === id)?.quantity ?? 0;
+  };
+};

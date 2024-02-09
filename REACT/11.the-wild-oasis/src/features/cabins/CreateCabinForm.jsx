@@ -62,13 +62,13 @@ function CreateCabinForm() {
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
       reset();
     },
-    onError: () => {
-      toast.error("Unable to create new Cabin");
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 
   function handleForm(data) {
-    mutate(data);
+    mutate({ ...data, image: data.image[0] });
   }
 
   function formErr(errors) {
@@ -81,6 +81,7 @@ function CreateCabinForm() {
         <Input
           type="text"
           id="name"
+          disabled={isCreating}
           {...register("name", { required: "This field is reqired" })}
         />
       </FormRow>
@@ -88,6 +89,7 @@ function CreateCabinForm() {
       <FormRow label="Maximum capacity" error={errors?.maxCapacity?.message}>
         <Input
           type="number"
+          disabled={isCreating}
           id="maxCapacity"
           {...register("maxCapacity", {
             required: "This field is reqired",
@@ -99,6 +101,7 @@ function CreateCabinForm() {
       <FormRow label="Regular price" error={errors?.regularPrice?.message}>
         <Input
           type="number"
+          disabled={isCreating}
           id="regularPrice"
           {...register("regularPrice", { required: "This field is reqired" })}
         />
@@ -108,11 +111,12 @@ function CreateCabinForm() {
         <Input
           type="number"
           id="discount"
+          disabled={isCreating}
           defaultValue={0}
           {...register("discount", {
             required: "This field is reqired",
             validate: (value) =>
-              value < getValues().regularPrice ||
+              value <= getValues().regularPrice ||
               "Discount should be less than regular price",
           })}
         />
@@ -125,13 +129,19 @@ function CreateCabinForm() {
         <Textarea
           type="number"
           id="description"
+          disabled={isCreating}
           defaultValue=""
           {...register("description", { required: "This field is reqired" })}
         />
       </FormRow>
 
       <FormRow label="Cabin photo" error={errors?.image?.message}>
-        <FileInput id="image" accept="image/*" {...register("image")} />
+        <FileInput
+          id="image"
+          disabled={isCreating}
+          accept="image/*"
+          {...register("image", { required: "This field is reqired" })}
+        />
       </FormRow>
 
       <FormRow>
